@@ -1,0 +1,235 @@
+{
+	"Assets": {
+		"Bitmap": [
+			{
+				"_tag": "bmp_skin_battlemisc",
+				"_precache": "1",
+				"__text": "src\\main\\resources\\Skin_Battle_Misc.png"
+			},
+			{
+				"_tag": "bmp_skin_gemsgrid",
+				"_precache": "1",
+				"__text": "src\\main\\resources\\Skin_Gems_Grid.png"
+			},
+			{
+				"_tag": "bmp_skin_buttmain",
+				"_precache": "1",
+				"__text": "src\\main\\resources\\Skin_Buttons_Main.png"
+			}
+		],
+		"BitmapImage": [
+			{
+				"_tag": "img_gem_green",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "0",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_gem_red",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "72",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_gem_yellow",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "144",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_gem_blue",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "216",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_gem_skull",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "287",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_gem_exp",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "358",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_gem_gold",
+				"_bitmap": "bmp_skin_gemsgrid",
+				"_x": "429",
+				"_y": "0",
+				"_width": "71",
+				"_height": "71"
+			},
+			{
+				"_tag": "img_selector_green",
+				"_bitmap": "bmp_skin_battlemisc",
+				"_x": "95",
+				"_y": "75",
+				"_width": "120",
+				"_height": "120"
+			},
+			{
+				"_tag": "img_selector_red",
+				"_bitmap": "bmp_skin_battlemisc",
+				"_x": "215",
+				"_y": "75",
+				"_width": "120",
+				"_height": "120"
+			},
+			{
+				"_tag": "img_buttwide_act",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "0",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttwide_hi0",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "51",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttwide_hi1",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "102",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttwide_hi2",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "153",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttwide_hi3",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "204",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttwide_pres",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "255",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttwide_gray",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "0",
+				"_y": "306",
+				"_width": "300",
+				"_height": "50",
+				"_destwidth": "300",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_act",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "0",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_hi0",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "51",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_hi1",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "102",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_hi2",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "153",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_hi3",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "204",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_pres",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "255",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			},
+			{
+				"_tag": "img_buttsmall_gray",
+				"_bitmap": "bmp_skin_buttmain",
+				"_x": "301",
+				"_y": "306",
+				"_width": "160",
+				"_height": "50",
+				"_destwidth": "160",
+				"_destheight": "50"
+			}
+		]
+	}
+}
