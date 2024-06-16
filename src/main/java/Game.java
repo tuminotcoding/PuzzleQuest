@@ -6,7 +6,7 @@ import java.awt.image.BufferStrategy;
 public class Game extends Canvas implements Runnable, MouseListener, MouseMotionListener {
     private BufferStrategy bs;
     private Thread thread;
-    private static final long TARGET_TIME_PER_FRAME = 1000 / 60; // 1000 milliseconds / 60 fps = 16.67 milliseconds
+    private static final long TIME_FRAME = 1000 / 60;
     private static JFrame frame = null;
     private long lastFrameTime = System.currentTimeMillis();
     static boolean isRunning = true;
@@ -18,16 +18,18 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     }
 
     public void run() {
+
         createBufferStrategy(3);
         bs = getBufferStrategy();
 
         requestFocus();
+
         lastFrameTime = System.currentTimeMillis();
         long currentTime = System.currentTimeMillis();
         while (isRunning) {
             do {
                 do {
-                    long elapsedTimeSinceLastFrame = currentTime - lastFrameTime;
+                    long elapsedTime = currentTime - lastFrameTime;
 
                     Graphics g = null;
                     try {
@@ -37,16 +39,17 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
                         g.dispose();
                     }
 
-                    while (elapsedTimeSinceLastFrame < TARGET_TIME_PER_FRAME) {
+                    while (elapsedTime < TIME_FRAME) {
                         try {
-                            Thread.sleep(TARGET_TIME_PER_FRAME - elapsedTimeSinceLastFrame);
+                            Thread.sleep(TIME_FRAME - elapsedTime);
                         } catch (InterruptedException e) {
                         }
 
                         currentTime = System.currentTimeMillis();
-                        elapsedTimeSinceLastFrame = currentTime - lastFrameTime;
+                        elapsedTime = currentTime - lastFrameTime;
 
-                        update(elapsedTimeSinceLastFrame);
+                        update(elapsedTime);
+                        lastFrameTime = System.currentTimeMillis();
                     }
                 } while (bs.contentsRestored());
                 bs.show();
@@ -60,42 +63,24 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     }
 
     public void render(Graphics g) {
-        long currentTime = System.currentTimeMillis();
-        double elapsedTime = (currentTime - lastFrameTime) / 1000.0; // Convert to seconds
-        double fps = 1 / elapsedTime; // Invert to get frames per second
         GemsManager.render(g);
-        lastFrameTime = System.currentTimeMillis();
-        g.setColor(new Color(255, 255, 255, 255));
-        g.drawString(String.format("FPS: %.8f", fps), 10, 20);
     }
 
-    public void mouseClicked(MouseEvent e) {
-    }
+    public void mouseClicked(MouseEvent e) {}
 
-    public void mousePressed(MouseEvent e) {
-
-        GemsManager.mousePressed(e);
-    }
+    public void mousePressed(MouseEvent e) {GemsManager.mousePressed(e);}
 
     public void mouseReleased(MouseEvent e) {
         GemsManager.mouseReleased(e);
     }
 
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e) {}
 
-    }
+    public void mouseExited(MouseEvent e) {}
 
-    public void mouseExited(MouseEvent e) {
+    public void mouseMoved(MouseEvent e) {GemsManager.mouseMoved(e);}
 
-    }
-
-    public void mouseMoved(MouseEvent e) {
-        GemsManager.mouseMoved(e);
-    }
-
-    public void mouseDragged(MouseEvent e) {
-
-    }
+    public void mouseDragged(MouseEvent e) {}
 
     public synchronized void start() {
         thread = new Thread(this, "Display");

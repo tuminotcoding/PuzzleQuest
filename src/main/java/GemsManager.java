@@ -37,7 +37,7 @@ public class GemsManager {
     }
     public static void mouseReleased(MouseEvent e) {
     }
-    
+
     public static void mouseMoved(MouseEvent e) {
 
         grid.mouseMoved(e);
