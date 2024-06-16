@@ -18,6 +18,9 @@ public class Gem {
     public class GemAnimation {
         public double time;
         public double total;
+        GemAnimation(){
+            this(0, 0);
+        }
 
         GemAnimation(double time, double total) {
             this.time = time;
@@ -42,8 +45,8 @@ public class Gem {
 
     Gem() {
         this.alpha = 1f;
-        this.coord = new Vector2i(0);
-        this.pos = new Vector2i(0);
+        this.coord = new Vector2i();
+        this.pos = new Vector2i();
         this.fadeoutAnim = new GemAnimation(0,0);
         this.swapAnim = new GemAnimation(0,0);
         this.movingDownAnim = new GemAnimation(0,0);

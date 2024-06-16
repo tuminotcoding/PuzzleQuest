@@ -325,22 +325,6 @@ public class Grid {
         }
     }
 
-    public void mouseReleased(MouseEvent e) {
-        if (firstGemClicked) {
-            int x = (e.getX() - Grid.offset.x) / (Grid.blockSize + Grid.gap);
-            int y = (e.getY() - Grid.offset.y) / (Grid.blockSize + Grid.gap);
-
-            // Verificar se o sprite selecionado está nos limites do grid.
-            x = Math.clamp(0, x,numRows - 1);
-            y = Math.clamp(0, y,numColumns - 1);
-
-            if (isAdjacent(selectedSpriteCoord, new Vector2i(x, y))) {
-              //  selectedSpriteCoord.negate();
-               // firstGemClicked = false;
-            }
-        }
-    }
-
     public void mouseMoved(MouseEvent e) {
     }
 }
