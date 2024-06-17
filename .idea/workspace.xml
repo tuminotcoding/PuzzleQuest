@@ -4,67 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GemDrop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GemSwap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MouseHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Skin_Backdrop_Standard.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Skin_Splash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/selector_green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/selector_red.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.base/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.base/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.base/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.controls/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.controls/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.controls/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.fxml/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.fxml/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.fxml/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.graphics/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.graphics/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.graphics/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.graphics/jpeg_fx.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.graphics/mesa3d.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/directshow.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/glib.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/gstreamer.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.media/libffi.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.swing/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.swing/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.swing/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/icu_web.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/libxml2.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/libxslt.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/legal/javafx.web/webkit.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx-swt.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.base.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.controls.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.fxml.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.graphics.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.media.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.swing.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/lib/javafx.web.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.1/src.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GemsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GemsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Assets.json" afterDir="false" />
-    </list>
+    <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
