@@ -12,7 +12,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     static boolean isRunning = true;
 
     public Game() {
-        new GemsManager();
+        new GameMenu();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
@@ -59,27 +59,27 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     }
 
     public void update(long dt) {
-        GemsManager.update(dt);
+        GameMenu.update(dt);
     }
 
     public void render(Graphics g) {
-        GemsManager.render(g);
+        GameMenu.render(g);
     }
 
     public void mousePressed(MouseEvent e) {
-        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_PRESSED));
+        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_PRESSED));
     }
 
     public void mouseReleased(MouseEvent e) {
-        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_RELEASED));
+        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_RELEASED));
     }
 
     public void mouseMoved(MouseEvent e) {
-        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_MOVED));
+        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_MOVED));
     }
 
     public void mouseDragged(MouseEvent e) {
-        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_DRAGGED));
+        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_DRAGGED));
     }
 
     public void mouseClicked(MouseEvent e) {}

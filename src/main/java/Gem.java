@@ -1,57 +1,45 @@
 import org.joml.Vector2i;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 import java.util.List;
-import java.util.Vector;
+
+enum GemType {
+    GEM_GREEN, GEM_RED, GEM_YELLOW, GEM_BLUE, GEM_SKULL, GEM_EXP, GEM_GOLD
+}
 
 public class Gem {
     public static List<String> gemsType = List.of(
-            "gem_green",
-            "gem_red",
-            "gem_yellow",
-            "gem_blue",
-            "gem_skull",
-            "gem_exp",
-            "gem_gold");
+            "gem_green", "gem_red", "gem_yellow", "gem_blue", "gem_skull", "gem_exp", "gem_gold");
 
-    public class GemAnimation {
-        public double time;
-        public double total;
-
-        GemAnimation() {
-            this(0, 0);
-        }
-
-        GemAnimation(double time, double total) {
-            this.time = time;
-            this.total = total;
-        }
-    }
-
-    public String gemType;
+    public GemType gemType;
     public BufferedImage sprite;
+
     public Vector2i coord;
     public Vector2i pos;
     public float alpha;
-    public boolean isFadingOut, isSwapping, isMoving;
+
+    public boolean isFadingOut;
+    public boolean isSwapping;
+    public boolean isMoving;
+
     public GemAnimation fadeoutAnim;
     public GemAnimation swapAnim;
     public GemAnimation movingDownAnim;
+
     public Vector2i start;
     public Vector2i end;
+
     public int fromY;
     public int toY;
     private Gem parent;
-    private Vector2i comparePos= new Vector2i();
+
     Gem() {
         this.alpha = 1f;
         this.coord = new Vector2i();
         this.pos = new Vector2i();
-        this.fadeoutAnim = new GemAnimation(0, 0);
-        this.swapAnim = new GemAnimation(0, 0);
-        this.movingDownAnim = new GemAnimation(0, 0);
+        this.fadeoutAnim = new GemAnimation();
+        this.swapAnim = new GemAnimation();
+        this.movingDownAnim = new GemAnimation();
     }
 
     public boolean isEqual(Gem parent) {
@@ -59,7 +47,7 @@ public class Gem {
             return false;
         }
 
-        return this.gemType.equals(parent.gemType);
+        return this.gemType == parent.gemType;
     }
 
     public void setCoord(int x, int y) {
@@ -70,7 +58,7 @@ public class Gem {
         this.pos = position;
     }
 
-    public void setType(String gemType) {
+    public void setType(GemType gemType) {
         this.gemType = gemType;
     }
 
@@ -79,7 +67,6 @@ public class Gem {
     }
 
     public void moveDown(int toY) {
-        if (this.isMoving) return;
         this.fromY = pos.y;
         this.toY = toY * (Grid.blockSize + Grid.gap);
         this.movingDownAnim = new GemAnimation(0, 0.5f);
@@ -95,7 +82,7 @@ public class Gem {
     }
 
     public void fadeOut() {
-        this.fadeoutAnim = new GemAnimation(0, 0.5f);
+        this.fadeoutAnim = new GemAnimation(0, 0.3f);
         this.isFadingOut = true;
     }
 
@@ -104,7 +91,6 @@ public class Gem {
     }
 
     public boolean hasSwapped() {
-
         return !(this.swapAnim.time < this.swapAnim.total);
     }
 

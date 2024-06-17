@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/AnimatedSprite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Button.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GemAnimation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Label.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/PlayerScore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DSBallade.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DSBalladeShadow.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/MorrisRoman-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/MorrisRomanAlternate-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ds-ballade.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GemsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Assets.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,8 +185,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GemsManager.java</url>
-          <line>5</line>
+          <url>file://$PROJECT_DIR$/src/main/java/GameMenu.java</url>
+          <line>7</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

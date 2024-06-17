@@ -37,6 +37,10 @@ public class Sprite {
         this.render(g, this.pos, this.size);
     }
 
+    public void render(Graphics g, Vector2i pos) {
+        this.render(g, pos.x, pos.y, size.x, size.y);
+    }
+
     public void render(Graphics g, Vector2i pos, Vector2i size) {
         this.render(g, pos.x, pos.y, size.x, size.y);
     }

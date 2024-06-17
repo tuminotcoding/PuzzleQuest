@@ -7,6 +7,7 @@ import java.util.*;
 import org.json.JSONArray;
 import java.io.File;
 import java.nio.file.Files;
+import java.util.stream.Collectors;
 
 public class ImageManager {
 
@@ -90,6 +91,27 @@ public class ImageManager {
             }
         }
         return null;
+    }
+
+    public static List<Sprite> getSpritesInRange(String group, String firstImageName, String lastImageName) {
+        List<Sprite> imageList = new ArrayList<>();
+        boolean foundFirst = false;
+
+        List<BitmapData> dataList = imageCache.get(group);
+        if (dataList != null) {
+            for (var data : dataList) {
+                if (foundFirst || data.name.equals(firstImageName)) {
+                    imageList.add(data.sprite);
+                    foundFirst = true;
+
+                    if (data.name.equals(lastImageName)) {
+                        break; // We find the last sprite, break the loop.
+                    }
+                }
+            }
+        }
+
+        return imageList;
     }
 
     public static Sprite getImage(String group, String imageName) {

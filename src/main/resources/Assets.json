@@ -161,6 +161,14 @@
 				"_height": "121"
 			},
 			{
+				"_tag": "img_selglow",
+				"_bitmap": "bmp_skin_battlemisc",
+				"_x": "0",
+				"_y": "59",
+				"_width": "172",
+				"_height": "14"
+			},
+			{
 				"_tag": "img_buttwide_act",
 				"_bitmap": "bmp_skin_buttmain",
 				"_x": "0",

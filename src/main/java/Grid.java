@@ -9,6 +9,7 @@ public class Grid {
     public static final int blockSize = 71; // Tamanho do bloco do grid
     public static final int gap = 3; // Espaço entre os blocos do grid
     public static final Vector2i offset = new Vector2i(217, 133);
+    public static Vector2i size;
     private final Sprite[] selectorSprite = new Sprite[2];
     private Gem[] table;
 
@@ -17,7 +18,8 @@ public class Grid {
     private double animTime;
     private float alpha;
 
-    private boolean killSelector;
+    static boolean isSwappingBack;
+    private boolean animateSelector;
     private boolean firstGemClicked;
 
     private Vector2i selectorSpriteSize;
@@ -33,6 +35,10 @@ public class Grid {
         this.numRows = x;
         this.numColumns = y;
         this.table = new Gem[x * y];
+
+        Grid.size = new Vector2i(numRows * (Grid.blockSize + Grid.gap),
+                numColumns * (Grid.blockSize + Grid.gap));
+
         this.alpha = 1.0f;
         this.firstGemSelectedCoord = new Vector2i();
         this.secondGemSelectedCoord = new Vector2i();
@@ -62,15 +68,15 @@ public class Grid {
     }
 
     private Gem getGem(Vector2i vec) {
-        return table[vec.x * numColumns + vec.y];
+        return this.table[vec.x * numColumns + vec.y];
     }
 
     private Gem getGem(int row, int column) {
-        return table[row * numColumns + column];
+        return this.table[row * numColumns + column];
     }
 
     private void setGem(int row, int column, Gem gem) {
-        table[row * numColumns + column] = gem;
+        this.table[row * numColumns + column] = gem;
     }
 
     private String getRandomGemType() {
@@ -81,11 +87,15 @@ public class Grid {
     public void generateGrid() {
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
-                String randomType = getRandomGemType();
-                Sprite sprite = gemsSprites.get(randomType);
+
+                Random random = new Random();
+                int randIndex = random.nextInt(Gem.gemsType.size());
+                String randomType = Gem.gemsType.get(randIndex);
+
+                Sprite sprite = this.gemsSprites.get(randomType);
 
                 Gem gem = new Gem();
-                gem.setType(randomType);
+                gem.setType(GemType.values()[randIndex]);
                 gem.setSprite(sprite.image);
                 gem.setCoord(i, j);
                 gem.pos.x = i * (Grid.blockSize + Grid.gap);
@@ -109,7 +119,7 @@ public class Grid {
         Gem gemA = this.getGem(coordA);
         Gem gemB = this.getGem(coordB);
 
-        String type = gemA.gemType;
+        GemType type = gemA.gemType;
         BufferedImage sprite = gemA.sprite;
         gemA.setType(gemB.gemType);
         gemA.setSprite(gemB.sprite);
@@ -133,7 +143,7 @@ public class Grid {
 
     // Scans for and records sequences of three or more identical gems by rows and columns.
     public boolean findMatches() {
-        matches.clear();
+        this.matches.clear();
 
         //Check horizontal matches
         for (int i = 0; i < numRows; i++) {
@@ -145,7 +155,7 @@ public class Grid {
                     // Add to the list of match if 3 or more identical gems were found in a row.
                     if (found >= 3) {
                         for (int k = 0; k < found; k++) {
-                            matches.add(new Vector2i(i, j - k));
+                            this.matches.add(new Vector2i(i, j - k));
                         }
                     }
                     found = 1;
@@ -163,14 +173,14 @@ public class Grid {
                     // Add to the list of match if 3 or more identical gems were found in a row.
                     if (found >= 3) {
                         for (int k = 0; k < found; k++) {
-                            matches.add(new Vector2i(i - k, j));
+                            this.matches.add(new Vector2i(i - k, j));
                         }
                     }
                     found = 1;
                 }
             }
         }
-        return !matches.isEmpty();
+        return !this.matches.isEmpty();
     }
 
     // Remove all matching gems.
@@ -213,7 +223,6 @@ public class Grid {
         return dropList;
     }
 
-    static boolean hasDropped = false;
     // Drop and insert new gems.
     public void dropGems(long dt) {
         var dropList = this.getDroppingGems();
@@ -222,9 +231,11 @@ public class Grid {
             Vector2i coord = new Vector2i(drop.x, drop.y + drop.shift);
 
             // Insert new gems
-            String randomType = getRandomGemType();
+            Random random = new Random();
+            int randIndex = random.nextInt(Gem.gemsType.size());
+            String randomType = Gem.gemsType.get(randIndex);
             Sprite sprite = gemsSprites.get(randomType);
-            this.getGem(coord).setType(randomType);
+            this.getGem(coord).setType(GemType.values()[randIndex]);
             this.getGem(coord).setSprite(sprite.image);
             this.getGem(coord).alpha = 1f;
 
@@ -233,10 +244,7 @@ public class Grid {
                 swap(new Vector2i(drop.x, drop.y), coord);
             }
         }
-        hasDropped = true;
     }
-
-    static boolean isSwappingBack = false;
 
     // Processes and executes gem swap actions if matches.
     public void processGemsSwaps() {
@@ -272,19 +280,8 @@ public class Grid {
         }
     }
 
-    public void update(long dt) {
-        this.findMatches();
-        this.removeMatchingGems();
-        this.dropGems(dt);
-        this.processGemsSwaps();
-
-        for (Gem gem : table) {
-            if (gem != null) {
-                gem.update(dt);
-            }
-        }
-
-        if (killSelector) {
+    public void processSelector (long dt) {
+        if (animateSelector) {
             animTime += dt / 1000.0f;
             int scale = (int) (animTime * 4);
             selectorSpriteSize.add(scale, scale);
@@ -292,12 +289,26 @@ public class Grid {
             if (alpha <= 0.0f) {
                 firstGemSelectedCoord.set(-1);
                 secondGemSelectedCoord.set(-1);
-                killSelector = false;
+                animateSelector = false;
                 animTime = 0.0f;
             }
         } else {
             alpha = 1.0f;
             selectorSpriteSize = new Vector2i(selectorSprite[0].size);
+        }
+    }
+
+    public void update(long dt) {
+        this.findMatches();
+        this.removeMatchingGems();
+        this.dropGems(dt);
+        this.processGemsSwaps();
+        this.processSelector(dt);
+
+        for (Gem gem : table) {
+            if (gem != null) {
+                gem.update(dt);
+            }
         }
     }
 
@@ -330,8 +341,12 @@ public class Grid {
     }
 
     public boolean isMouseHover(MouseEvent e) {
-        return (e.getX() >= Grid.offset.x && e.getX() < Grid.offset.x + numRows * (Grid.blockSize + Grid.gap)) &&
+        /*return (e.getX() >= Grid.offset.x && e.getX() < Grid.offset.x + numRows * (Grid.blockSize + Grid.gap)) &&
                 (e.getY() >= Grid.offset.y && e.getY() < Grid.offset.y + numColumns * (Grid.blockSize + Grid.gap));
+*/
+        Rectangle rect = new Rectangle(Grid.offset.x, Grid.offset.y, Grid.size.x, Grid.size.y);
+
+        return rect.contains(new Point(e.getX(), e.getY()));
     }
 
     public void mouseEvent(MouseHandler handler) {
@@ -343,7 +358,7 @@ public class Grid {
         if (this.isGemsFadding())
             return;
 
-        if (gemSwaps != null && !gemSwaps.gemA.hasSwapped() && !gemSwaps.gemB.hasSwapped())
+        if (gemSwaps != null && !gemSwaps.canSwap())
             return;
 
         Vector2i gridCoords = getCoordFromMousePos(e);
@@ -365,7 +380,7 @@ public class Grid {
                             this.getGem(gridCoords).move(this.getGem(firstGemSelectedCoord));
                             gemSwaps = new GemSwap(this.getGem(firstGemSelectedCoord), this.getGem(gridCoords));
                             secondGemSelectedCoord = gridCoords;
-                            killSelector = true;
+                            animateSelector = true;
                             firstGemClicked = false;
                             System.out.println("move gem");
                         } else {
@@ -385,7 +400,7 @@ public class Grid {
                     gemSwaps = new GemSwap(this.getGem(dragStartCoord), this.getGem(gridCoords));
                     dragStartCoord.set(-1);
                     firstGemClicked = false;
-                    killSelector = true;
+                    animateSelector = true;
                 }
                 break;
             default:
