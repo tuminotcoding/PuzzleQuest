@@ -93,6 +93,14 @@
     <configuration name="Game" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Game" />
       <module name="Puzzle.main" />
+<<<<<<< HEAD
+=======
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+>>>>>>> dec44d50c54a48799dbf8b0fe57701ba0040237a
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
