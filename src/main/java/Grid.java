@@ -340,15 +340,11 @@ public class Grid {
         if (!this.isMouseHover(e))
             return;
 
-        if (gemSwaps != null) {
-            if (!gemSwaps.gemA.hasSwapped() && !gemSwaps.gemB.hasSwapped()) {
-                return;
-            }
-        }
-
-        if(this.isGemsFadding()){
+        if (this.isGemsFadding())
             return;
-        }
+
+        if (gemSwaps != null && !gemSwaps.gemA.hasSwapped() && !gemSwaps.gemB.hasSwapped())
+            return;
 
         Vector2i gridCoords = getCoordFromMousePos(e);
         switch (handler.type) {
