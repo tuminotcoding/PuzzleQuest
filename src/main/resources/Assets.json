@@ -15,9 +15,79 @@
 				"_tag": "bmp_skin_buttmain",
 				"_precache": "1",
 				"__text": "src\\main\\resources\\Skin_Buttons_Main.png"
+			},
+			{
+				"_tag": "bmp_skin_backdrop",
+				"_precache": "1",
+				"__text": "src\\main\\resources\\Skin_Backdrop_Standard.jpg"
 			}
 		],
+		
 		"BitmapImage": [
+			{
+				"_tag": "img_border_top",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "0",
+				"_width": "1024",
+				"_height": "95"
+			},
+			{
+				"_tag": "img_border_left",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "95",
+				"_width": "19",
+				"_height": "653"
+			},
+			{
+				"_tag": "img_border_right",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "1003",
+				"_y": "95",
+				"_width": "21",
+				"_height": "653"
+			},
+			{
+				"_tag": "img_border_bottom",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "748",
+				"_width": "1024",
+				"_height": "20"
+			},
+			{
+				"_tag": "img_border_top_xbox",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "0",
+				"_width": "1024",
+				"_height": "117"
+			},
+			{
+				"_tag": "img_backdrop",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "0",
+				"_width": "1024",
+				"_height": "768"
+			},
+			{
+				"_tag": "img_toppanel",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "0",
+				"_width": "1024",
+				"_height": "95"
+			},
+			{
+				"_tag": "img_black",
+				"_bitmap": "bmp_skin_backdrop",
+				"_x": "0",
+				"_y": "768",
+				"_width": "50",
+				"_height": "50"
+			},
 			{
 				"_tag": "img_gem_green",
 				"_bitmap": "bmp_skin_gemsgrid",
@@ -79,16 +149,16 @@
 				"_bitmap": "bmp_skin_battlemisc",
 				"_x": "95",
 				"_y": "75",
-				"_width": "120",
-				"_height": "120"
+				"_width": "121",
+				"_height": "121"
 			},
 			{
 				"_tag": "img_selector_red",
 				"_bitmap": "bmp_skin_battlemisc",
 				"_x": "215",
 				"_y": "75",
-				"_width": "120",
-				"_height": "120"
+				"_width": "121",
+				"_height": "121"
 			},
 			{
 				"_tag": "img_buttwide_act",

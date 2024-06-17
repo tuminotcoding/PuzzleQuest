@@ -66,21 +66,27 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
         GemsManager.render(g);
     }
 
-    public void mouseClicked(MouseEvent e) {}
-
-    public void mousePressed(MouseEvent e) {GemsManager.mousePressed(e);}
+    public void mousePressed(MouseEvent e) {
+        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_PRESSED));
+    }
 
     public void mouseReleased(MouseEvent e) {
-        GemsManager.mouseReleased(e);
+        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_RELEASED));
     }
+
+    public void mouseMoved(MouseEvent e) {
+        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_MOVED));
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        GemsManager.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_DRAGGED));
+    }
+
+    public void mouseClicked(MouseEvent e) {}
 
     public void mouseEntered(MouseEvent e) {}
 
     public void mouseExited(MouseEvent e) {}
-
-    public void mouseMoved(MouseEvent e) {GemsManager.mouseMoved(e);}
-
-    public void mouseDragged(MouseEvent e) {}
 
     public synchronized void start() {
         thread = new Thread(this, "Display");
@@ -89,6 +95,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 
     public static void main(String[] args) {
         Game game = new Game();
+        game.setBackground(Color.BLACK);
         frame = new JFrame("Puzzle Quest");
         frame.add(game);
         frame.pack();
@@ -97,6 +104,10 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
         frame.setSize(1038, 788);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setAlwaysOnTop(true);
+        frame.toFront();
+        frame.setAlwaysOnTop(false);
+
         game.start();
     }
 }

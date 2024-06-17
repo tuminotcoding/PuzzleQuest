@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import java.util.List;
+import java.util.Vector;
 
 public class Gem {
     public static List<String> gemsType = List.of(
@@ -18,7 +19,8 @@ public class Gem {
     public class GemAnimation {
         public double time;
         public double total;
-        GemAnimation(){
+
+        GemAnimation() {
             this(0, 0);
         }
 
@@ -42,14 +44,14 @@ public class Gem {
     public int fromY;
     public int toY;
     private Gem parent;
-
+    private Vector2i comparePos= new Vector2i();
     Gem() {
         this.alpha = 1f;
         this.coord = new Vector2i();
         this.pos = new Vector2i();
-        this.fadeoutAnim = new GemAnimation(0,0);
-        this.swapAnim = new GemAnimation(0,0);
-        this.movingDownAnim = new GemAnimation(0,0);
+        this.fadeoutAnim = new GemAnimation(0, 0);
+        this.swapAnim = new GemAnimation(0, 0);
+        this.movingDownAnim = new GemAnimation(0, 0);
     }
 
     public boolean isEqual(Gem parent) {
@@ -77,7 +79,7 @@ public class Gem {
     }
 
     public void moveDown(int toY) {
-        if(  this.isMoving) return;
+        if (this.isMoving) return;
         this.fromY = pos.y;
         this.toY = toY * (Grid.blockSize + Grid.gap);
         this.movingDownAnim = new GemAnimation(0, 0.5f);
@@ -88,12 +90,12 @@ public class Gem {
         this.start = new Vector2i(pos);
         this.end = new Vector2i(parent.pos);
         this.parent = parent;
-        this.swapAnim = new GemAnimation(0,0.5f);
+        this.swapAnim = new GemAnimation(0, 0.4f);
         this.isSwapping = true;
     }
 
     public void fadeOut() {
-        this.fadeoutAnim = new GemAnimation(0,0.5f);
+        this.fadeoutAnim = new GemAnimation(0, 0.5f);
         this.isFadingOut = true;
     }
 
@@ -102,7 +104,8 @@ public class Gem {
     }
 
     public boolean hasSwapped() {
-        return this.swapAnim.time >= this.swapAnim.total && !isSwapping;
+
+        return !(this.swapAnim.time < this.swapAnim.total);
     }
 
     public boolean hasMovedDown() {
@@ -120,10 +123,8 @@ public class Gem {
             if (animTime >= animDuration) {
                 animTime = animDuration;
                 isMoving = false;
-            }
-            else
-            {
-                if( pos.y < toY-1) {
+            } else {
+                if (pos.y < toY - 1) {
                     pos.y = (int) MathUtils.lerp(fromY, toY, animTime / animDuration);
                 }
             }
@@ -133,12 +134,14 @@ public class Gem {
                 animTime = animDuration;
                 isSwapping = false;
             }
+
             int dx = Math.abs(coord.x - parent.coord.x);
             int dy = Math.abs(coord.y - parent.coord.y);
             if (dx == 1) {
                 pos.x = (int) MathUtils.lerp(this.start.x, this.end.x, animTime / animDuration);
             }
             if (dy == 1) {
+
                 pos.y = (int) MathUtils.lerp(this.start.y, this.end.y, animTime / animDuration);
             }
         } else if (isFadingOut) {

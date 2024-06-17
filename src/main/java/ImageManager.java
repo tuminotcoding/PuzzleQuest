@@ -12,11 +12,11 @@ public class ImageManager {
 
     public static class BitmapData {
         public String name;
-        public BufferedImage image;
+        public Sprite sprite;
 
-        BitmapData(String name, BufferedImage image) {
+        BitmapData(String name, Sprite image) {
             this.name = name;
-            this.image = image;
+            this.sprite = image;
         }
     }
 
@@ -44,7 +44,7 @@ public class ImageManager {
             String imageGroup = bitmap.getString("_tag");
             try {
                 BufferedImage image = ImageIO.read(new File(imagePath));
-                bitmapDataList.add(new BitmapData(imageGroup, image));
+                bitmapDataList.add(new BitmapData(imageGroup, new Sprite(image)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,12 +66,11 @@ public class ImageManager {
                     int y = bitmapImage.getInt("_y");
                     int w = bitmapImage.getInt("_width");
                     int h = bitmapImage.getInt("_height");
-                    BufferedImage subImage = data.image.getSubimage(x, y, w, h);
-                    bitmapList.add(new BitmapData(imageName, subImage));
+                    System.out.println("name:"+imageName+" x:"+x+" y:"+y+" w:"+w+" h:"+h);
+                    BufferedImage subImage = data.sprite.image.getSubimage(x, y, w, h);
+                    bitmapList.add(new BitmapData(imageName, new Sprite(subImage, x, y, w, h)));
                 }
             }
-
-            System.out.println(data.name);
             imageCache.put(data.name, bitmapList);
         }
     }
@@ -80,12 +79,12 @@ public class ImageManager {
         return imageCache.get(group);
     }
 
-    public static BufferedImage getImage(String imageName) {
+    public static Sprite getImage(String imageName) {
         if (!imageName.isEmpty()) {
             for (var entry : imageCache.entrySet()) {
                 for (var data : imageCache.get(entry.getKey())) {
                     if (data.name.equals(imageName)) {
-                        return data.image;
+                        return data.sprite;
                     }
                 }
             }
@@ -93,12 +92,12 @@ public class ImageManager {
         return null;
     }
 
-    public static BufferedImage getImage(String group, String imageName) {
+    public static Sprite getImage(String group, String imageName) {
         List<BitmapData> dataList = imageCache.get(group);
         if (dataList != null) {
             for (var data : imageCache.get(group)) {
                 if (data.name.equals(imageName)) {
-                    return data.image;
+                    return data.sprite;
                 }
             }
         }
