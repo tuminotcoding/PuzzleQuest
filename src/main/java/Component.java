@@ -51,7 +51,6 @@ public class Component {
     public void render(Graphics g) {}
 
     private void onClick() {
-        // Implemente a ação de clique aqui
         System.out.println("Component clicked!");
     }
 }
