@@ -237,6 +237,7 @@ public class Grid {
                 }
             }
         }
+        
         // Check vertical matches
         for (int j = 0; j < numColumns; j++) {
             int length = 1;
