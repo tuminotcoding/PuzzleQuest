@@ -71,7 +71,8 @@ public class GameMenu {
                 selectedSave = selectedSave.replaceAll("\\d+", String.valueOf(count));
                 System.out.println(selectedSave);
             }
-
+            ScoreBoard.playerScore[0].restart();
+            ScoreBoard.playerScore[1].restart();
             save(selectedSave, count == 10);
             startGame();
 
