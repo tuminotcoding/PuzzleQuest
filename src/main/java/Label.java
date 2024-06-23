@@ -15,13 +15,15 @@ public class Label extends Component {
 
     public int outlineWidth;
     public Color outlineColor;
+    public Color backgroundColor;
+    public int backGroundWidth;
 
     Label(Vector2i position, String text, int size) {
         super(position);
 
         try {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            this.font = Font.createFont(Font.PLAIN, new File("src\\main\\resources\\MorrisRoman-Black.ttf")).deriveFont((float) size);
+            this.font = Font.createFont(Font.PLAIN, new File("resources\\MorrisRoman-Black.ttf")).deriveFont((float) size);
             ge.registerFont(font);
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,6 +36,7 @@ public class Label extends Component {
         this.color = new Color(0xFFFFFF);
         this.shadowColor = new Color(0x000000);
         this.outlineColor = new Color(0x000000);
+        this.backgroundColor = new Color(0x000000);
     }
 
     public void setFont(Font font) {
@@ -44,10 +47,24 @@ public class Label extends Component {
         if (g instanceof Graphics2D) {
             Graphics2D g2d = (Graphics2D) g.create();
 
+            FontMetrics metrics = g.getFontMetrics(this.font);
+            int width = metrics.stringWidth(text);
+            int height = metrics.getHeight();
+            int ascent = metrics.getAscent();
+
+            if(this.backGroundWidth > 0) {
+                g.setColor(this.backgroundColor);
+                g.fillRect(this.position.x - backGroundWidth / 2, this.position.y - backGroundWidth / 2 - ascent,
+                        width + backGroundWidth, height + backGroundWidth);
+            }
+
             // Draw the drop shadow
             if (this.shadowOffset > 0) {
-                g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f));
+                g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 178 / 255));
+                int alpha = Math.min(color.getAlpha(), 178);
+                this.shadowColor = new Color(outlineColor.getRed(), outlineColor.getRed(), outlineColor.getBlue(), alpha);
                 g2d.setColor(this.shadowColor);
+
 
                 AffineTransform orig = g2d.getTransform();
                 g2d.translate(this.shadowOffset, this.shadowOffset);
@@ -67,6 +84,8 @@ public class Label extends Component {
             if (this.outlineWidth > 0) {
                 g2d.setStroke(new BasicStroke(outlineWidth));
                 g2d.setColor(outlineColor);
+                int alpha = Math.min(color.getAlpha(), outlineColor.getAlpha());
+                this.outlineColor = new Color(outlineColor.getRed(), outlineColor.getRed(), outlineColor.getBlue(), alpha);
 
                 // Creates a GlyphVector for the outline.
                 FontRenderContext frcOutline = g2d.getFontRenderContext();

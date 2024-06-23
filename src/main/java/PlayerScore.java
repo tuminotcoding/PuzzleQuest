@@ -1,22 +1,23 @@
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 class PlayerScore {
-    private Map<GemType, Integer> gemCount;
+    public Map<GemType, Integer> gemCount;
     int health;
     int maxHealth;
     boolean nextTurn;
 
     PlayerScore() {
-        health = maxHealth = 50;
-        gemCount = new EnumMap<>(GemType.class);
-        for (GemType gem : GemType.values()) {
-            gemCount.put(gem, 0);
-        }
+        gemCount = new HashMap<>();
+        this.restart();
     }
 
     public void restart(){
-        gemCount.clear();
+        for (GemType gem : GemType.values()) {
+            gemCount.put(gem, 0);
+        }
         health = maxHealth = 50;
     }
 
@@ -29,6 +30,11 @@ class PlayerScore {
     }
 
     public int getGemCount(GemType gem) {
+        if(gemCount == null) {
+            System.out.println("getGemCount error");
+            return 0;
+        }
+
         return gemCount.get(gem);
     }
 }

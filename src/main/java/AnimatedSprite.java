@@ -5,22 +5,22 @@ import java.util.List;
 public class AnimatedSprite {
     private List<Sprite> frames;
     private int currentFrame;
-    private long lastTime, timer;
-    private long speed;
+    private double  timer;
+    private final double speed;
+    public Vector2i size;
 
     public AnimatedSprite(List<Sprite> frames, int speed) {
-        this.speed = speed;
+        this.speed = (double) speed / 1000;
 
         this.frames = frames;
+
         currentFrame = 0;
         timer = 0;
-        lastTime = System.currentTimeMillis();
+        size = frames.getFirst().size;
     }
 
-    public void update() {
-        timer += System.currentTimeMillis() - lastTime;
-        lastTime = System.currentTimeMillis();
-
+    public void update(double dt) {
+        timer += dt;
         if (timer > speed) {
             currentFrame++;
             timer = 0;
@@ -33,5 +33,9 @@ public class AnimatedSprite {
 
     public void render(Graphics g, Vector2i position) {
         frames.get(currentFrame).render(g, position);
+    }
+
+    public void render(Graphics g, Vector2i position, Vector2i size) {
+        frames.get(currentFrame).render(g, position, size);
     }
 }

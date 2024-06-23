@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable, MouseListener, MouseMotionListener {
+public class Game extends Canvas implements Runnable, MouseListener, MouseMotionListener, KeyListener {
     private BufferStrategy bs;
     private Thread thread;
     private static final long TIME_FRAME = 1000 / 60;
@@ -13,8 +13,16 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 
     public Game() {
         new GameMenu();
+        save();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
+        this.addKeyListener(this);
+    }
+
+    public void save (){
+    }
+
+    public void load () {
     }
 
     public void run() {
@@ -48,7 +56,8 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
                         currentTime = System.currentTimeMillis();
                         elapsedTime = currentTime - lastFrameTime;
 
-                        update(elapsedTime);
+                        double elapsed = elapsedTime/1000.0f;
+                        update(elapsed);
                         lastFrameTime = System.currentTimeMillis();
                     }
                 } while (bs.contentsRestored());
@@ -58,7 +67,7 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
         bs.dispose();
     }
 
-    public void update(long dt) {
+    public void update(double dt) {
         GameMenu.update(dt);
     }
 
@@ -87,6 +96,21 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
     public void mouseEntered(MouseEvent e) {}
 
     public void mouseExited(MouseEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        GameMenu.keyPressed(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 
     public synchronized void start() {
         thread = new Thread(this, "Display");

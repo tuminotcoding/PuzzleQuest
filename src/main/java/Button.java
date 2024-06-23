@@ -8,9 +8,26 @@ public class Button extends Component {
     public String text;
     public Label label;
 
+    Button(Vector2i position, String text, Vector2i size) {
+        super(position);
+        this.loadTextures();
+
+        this.size = size;
+        this.text = text;
+        this.label = new Label(new Vector2i(), text, 22);
+    }
+
     Button(Vector2i position, String text) {
         super(position);
 
+        this.loadTextures();
+
+        this.size = new Vector2i(this.actionSprte.size);
+        this.text = text;
+        this.label = new Label(new Vector2i(), text, 22);
+    }
+
+    private void loadTextures() {
         try {
             this.actionSprte = ImageManager.getImage("bmp_skin_buttmain", "img_buttwide_act");
             this.pressedSprite = ImageManager.getImage("bmp_skin_buttmain", "img_buttwide_pres");
@@ -24,25 +41,23 @@ public class Button extends Component {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        this.text = text;
-        this.label = new Label(new Vector2i(), text, 22);
     }
 
-    public void update(long dt) {
-        this.animatedSprite.update();
+    public void update(double dt) {
+        if(this.disable) return;
+        this.animatedSprite.update(dt);
     }
 
     public void render(Graphics g) {
         this.label.position = new Vector2i(this.position);
 
         if (this.isPressed) {
-            this.pressedSprite.render(g, this.position);
+            this.pressedSprite.render(g, this.position, this.size);
             this.label.position.y++;
         } else if (this.isInside) {
-            this.animatedSprite.render(g, this.position);
+            this.animatedSprite.render(g, this.position, this.size);
         } else {
-            this.actionSprte.render(g, this.position);
+            this.actionSprte.render(g, this.position, this.size);
         }
 
         FontMetrics metrics = g.getFontMetrics(this.label.font);
@@ -51,8 +66,8 @@ public class Button extends Component {
         int ascent = metrics.getAscent();
 
         // Align the text on the button center.
-        this.label.position.x += (this.actionSprte.size.x - width) / 2;
-        this.label.position.y += (this.actionSprte.size.y - height) / 2 + ascent;
+        this.label.position.x += (this.size.x - width) / 2;
+        this.label.position.y += (this.size.y - height) / 2 + ascent;
 
         this.label.text = this.text;
         this.label.outlineWidth = 2;

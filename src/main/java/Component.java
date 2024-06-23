@@ -7,6 +7,13 @@ public class Component {
     public Vector2i size;
     protected boolean isInside;
     protected boolean isPressed;
+    public boolean disable;
+
+    public interface ComponentCallback {
+        void onItemClicked();
+    }
+
+    private ComponentCallback callback;
 
     Component(Vector2i position) {
         this.position = position;
@@ -18,12 +25,14 @@ public class Component {
         this.size = size;
     }
 
-    private boolean contains(Point p) {
+    protected boolean contains(Point p) {
         return p.x >= this.position.x && p.x <= this.position.x + size.x &&
                 p.y >= this.position.y && p.y <= this.position.y + size.y;
     }
 
     public void mouseEvent(MouseHandler handler) {
+        if(this.disable) return;
+
         MouseEvent e = handler.event;
 
         switch (handler.type) {
@@ -47,11 +56,16 @@ public class Component {
         }
     }
 
-    public void update (long dt){}
+    public void update (double dt){}
     public void render(Graphics g) {}
 
-    private void onClick() {
-        // Implemente a ação de clique aqui
-        System.out.println("Component clicked!");
+    public void onClick() {
+        if (callback != null) {
+            callback.onItemClicked();
+        }
+    }
+
+    public void setCallback(ComponentCallback callback) {
+        this.callback = callback;
     }
 }

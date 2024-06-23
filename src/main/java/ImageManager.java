@@ -100,7 +100,9 @@ public class ImageManager {
         List<BitmapData> dataList = imageCache.get(group);
         if (dataList != null) {
             for (var data : dataList) {
+                System.out.println("found" + data.name);
                 if (foundFirst || data.name.equals(firstImageName)) {
+
                     imageList.add(data.sprite);
                     foundFirst = true;
 
@@ -109,6 +111,9 @@ public class ImageManager {
                     }
                 }
             }
+        }
+        else {
+            System.out.println("Error: Group not found in Assets: " + group);
         }
 
         return imageList;

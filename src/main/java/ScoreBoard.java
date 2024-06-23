@@ -1,92 +1,156 @@
 import org.joml.Vector2i;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.EnumMap;
-import java.util.Vector;
 
 public class ScoreBoard {
     private Label gemsText;
-    public int currentPlayer;
-    public PlayerScore[] playerScore = new PlayerScore[2];
-    Sprite progressBar;
-    Map<String, Integer> scoreGems;
+    public static int currentPlayer;
+    public static PlayerScore[] playerScore = new PlayerScore[2];
+    public Sprite playerHealthBar;
+    public Sprite infoBarBg;
+    public List<Sprite> infoBarList;
+    public AnimatedSprite shieldGlowSprite;
+    public AnimatedSprite[] shieldSprite = new AnimatedSprite[2];
+    private int length;
+    private GemType gemType;
+    private float textAlpha;
 
     ScoreBoard() {
         gemsText = new Label(new Vector2i(106, 260), "", 16);
-
         playerScore[0] = new PlayerScore();
         playerScore[1] = new PlayerScore();
-        playerScore[0].addGem(GemType.GEM_YELLOW, 3);
-        playerScore[1].addGem(GemType.GEM_EXP, 3);
 
-        this.progressBar = ImageManager.getImage("bmp_skin_battlemisc", "img_selglow");
+        currentPlayer = length = 0;
+
+
+        try {
+            this.playerHealthBar = ImageManager.getImage("bmp_skin_battlemisc", "img_selglow");
+            this.infoBarBg = ImageManager.getImage("bmp_skin_battlemisc", "img_gems_bar_bk");
+
+            infoBarList = ImageManager.getSpritesInRange("bmp_skin_battlemisc",
+                    "img_gems_bar_grn",
+                    "img_gems_bar_blu");
+
+            var spritesList = ImageManager.getSpritesInRange("bmp_skin_battlemisc",
+                    "img_shieldgrn_0",
+                    "img_shieldgrn_8");
+
+            this.shieldSprite[0] = new AnimatedSprite(spritesList, 60);
+
+            spritesList = ImageManager.getSpritesInRange("bmp_skin_battlemisc",
+                    "img_shieldred_0",
+                    "img_shieldred_8");
+
+            this.shieldSprite[1] = new AnimatedSprite(spritesList, 60);
+
+            spritesList = ImageManager.getSpritesInRange("bmp_skin_gemsgrid",
+                    "img_shieldglow_0",
+                    "img_shieldglow_3");
+
+            this.shieldGlowSprite = new AnimatedSprite(spritesList, 220);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    void addGems(GemType gemType, int count) {
-        int totalGems = playerScore[currentPlayer].getGemCount(gemType);
-        int invertPlayer = currentPlayer > 0 ? 1 : 0;
+    void addGem(GemType gemType){
+        length++;
+        this.gemType = gemType;
+    }
 
-        if (count >= 3 && gemType.equals(GemType.GEM_SKULL))
+    void processGems(GemType gemType, int length) {
+        if (gemType == null || length == 0) {
+            return;
+        }
+
+        int totalGems = 0;
+        int invertPlayer = currentPlayer > 0 ? 0 : 1;
+
+        // If a set of 3 skull gems is collected, reduce the opponent's health (one per gem)
+        if (length >= 3 && gemType.equals(GemType.GEM_SKULL))
             playerScore[invertPlayer].health -= 3;
 
-        if (totalGems == 10 && gemType.equals(GemType.GEM_EXP)) {
+        // If a set of 3 yellow gems is collected, clear the opponent's gold
+        if (length >= 3 && gemType.equals(GemType.GEM_YELLOW))
+            playerScore[invertPlayer].clearGem(gemType);
+
+        // If a set of 3 red gems is collected, increase the player's health (one per gem)
+        if (length >= 3 && gemType.equals(GemType.GEM_RED))
+            playerScore[currentPlayer].health += 3;
+
+        // After collecting 10 experience gems, reduce the opponent's max health and clear the player's experience
+        totalGems = playerScore[currentPlayer].getGemCount(GemType.GEM_EXP);
+        if (totalGems >= 10) {
             playerScore[currentPlayer].clearGem(gemType);
             playerScore[invertPlayer].maxHealth -= 3;
         }
 
-        if (totalGems == 10 && gemType.equals(GemType.GEM_GOLD)) {
+        // After collecting 10 gold gems, reduce the opponent's health in the next turn and reset the player's gold
+        totalGems = playerScore[currentPlayer].getGemCount(GemType.GEM_GOLD);
+        if (totalGems >= 10) {
             if (playerScore[currentPlayer].nextTurn) {
-                playerScore[currentPlayer].clearGem(gemType);
+                playerScore[currentPlayer].clearGem(GemType.GEM_GOLD);
                 playerScore[currentPlayer].nextTurn = false;
                 playerScore[invertPlayer].health -= 3;
             }
-
             playerScore[currentPlayer].nextTurn = true;
         }
 
-        if (count >= 3 && gemType.equals(GemType.GEM_YELLOW))
-            playerScore[invertPlayer].clearGem(gemType);
-
-        if (count >= 3 && gemType.equals(GemType.GEM_RED))
-            playerScore[currentPlayer].health += 3;
-
-        playerScore[currentPlayer].addGem(gemType, count);
-    }
-
-    void update(long dt) {
-
-        if(playerScore[0].health >= playerScore[0].maxHealth)
-            playerScore[0].health = playerScore[0].maxHealth;
-
-        if(playerScore[1].health >= playerScore[1].maxHealth)
-            playerScore[1].health = playerScore[1].maxHealth;
-
-        if(playerScore[0].health <= 0|| playerScore[1].health <= 0){
-            String playerWin = playerScore[0].health > 0? "Player 1 wins" : "Player 2 wins";
-            System.out.println(playerWin);
-            playerScore[0].restart();
-            playerScore[1].restart();
+        //Do not change the turn if the player creates a sequence of 4 gems of the same color.
+        if (length <= 4) {
+            currentPlayer = currentPlayer > 0 ? 0 : 1;
         }
+
+        this.length = 0;
+        playerScore[currentPlayer].addGem(gemType, length);
     }
 
-    void drawScore(Graphics g, Vector2i position, Color color, int score){
-        gemsText.text  = String.valueOf(score);
+    void update(double dt) {
+        processGems(gemType, length);
+
+        playerScore[0].health = Math.min(playerScore[0].health, playerScore[0].maxHealth);
+        playerScore[1].health = Math.min(playerScore[1].health, playerScore[1].maxHealth);
+
+        if (playerScore[0].health <= 0 || playerScore[1].health <= 0) {
+            textAlpha -= (int) (dt);
+            textAlpha = Math.clamp(textAlpha, 0.0f, 1.0f);
+        }
+
+
+        this.shieldSprite[0].update(dt);
+        this.shieldSprite[1].update(dt);
+        this.shieldGlowSprite.update(dt);
+    }
+
+    void drawScore(Graphics g, Vector2i position, Color color, int score) {
+        gemsText.text = String.valueOf(score);
         gemsText.color = color;
         gemsText.position = position;
         gemsText.render(g);
     }
 
-    void drawPlayerScore(Graphics g, int playerID, int posX, int y) {
+    void drawPlayerScore(Graphics g, int playerID, int posX) {
         int score = playerScore[playerID].getGemCount(GemType.GEM_GOLD);
-        drawScore(g, new Vector2i(posX, y + 28), Color.YELLOW, score);
+        drawScore(g, new Vector2i(posX, 288), Color.YELLOW, score);
         score = playerScore[playerID].getGemCount(GemType.GEM_EXP);
-        drawScore(g, new Vector2i(posX + 73, y + 28), Color.MAGENTA, score);
+        drawScore(g, new Vector2i(posX + 73, 288), Color.MAGENTA, score);
+
+        infoBarBg.render(g, new Vector2i(posX + 59, 168));
 
         for (int i = 0; i < 4; i++) {
             score = playerScore[playerID].getGemCount(GemType.values()[i]);
-            drawScore(g, new Vector2i(posX + 64, y), Color.WHITE, score);
+            int width = infoBarList.get(i).size.x;
+            int height = infoBarList.get(i).size.y;
+            int progress = score * height / 50;
+            infoBarList.get(i).render(g, new Vector2i(posX + 59, 168 + height - progress), new Vector2i(width, progress));
+            posX += 21;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            score = playerScore[playerID].getGemCount(GemType.values()[i]);
+            drawScore(g, new Vector2i(posX - 21, 260), Color.WHITE, score);
             posX += 21;
         }
     }
@@ -94,32 +158,48 @@ public class ScoreBoard {
     void drawPlayerHealth(Graphics g, int playerID, int posX) {
         int health = playerScore[playerID].health;
         int maxHealth = playerScore[playerID].maxHealth;
+        int progress = health * this.playerHealthBar.size.x / maxHealth;
         Vector2i position = new Vector2i(posX, 123);
-        int progress = health *  this.progressBar.size.x / maxHealth;
-        this.progressBar.render(g, new Vector2i(posX, 123), new Vector2i(progress, this.progressBar.size.y));
+        this.playerHealthBar.render(g, position, new Vector2i(progress, this.playerHealthBar.size.y));
 
-        this.gemsText.text  = health + " of " + maxHealth;
-        this.gemsText.color = Color.WHITE;
-        this.gemsText.shadowOffset = 0;
         FontMetrics metrics = g.getFontMetrics(this.gemsText.font);
-
+        this.gemsText.text = health + " de " + maxHealth;
         int width = metrics.stringWidth(this.gemsText.text);
         int height = metrics.getHeight();
         int ascent = metrics.getAscent();
 
         // Align the text on the progress bar center.
-        this.gemsText.position.x = position.x + (this.progressBar.size.x - width) / 2;
-        this.gemsText.position.y = position.y + (this.progressBar.size.y - height) / 2 + ascent;
+        this.gemsText.position.x = position.x + (this.playerHealthBar.size.x - width) / 2;
+        this.gemsText.position.y = position.y + (this.playerHealthBar.size.y - height) / 2 + ascent;
+
+        this.gemsText.color = Color.WHITE;
+        this.gemsText.shadowOffset = 0;
         this.gemsText.render(g);
+    }
+
+    void drawShield(Graphics g) {
+        Vector2i position = currentPlayer == 0 ?
+                new Vector2i(84, 70) :
+                new Vector2i(900, 70);
+
+        Vector2i spriteSize = this.shieldSprite[currentPlayer].size;
+        Vector2i newSize = new Vector2i(130, 130);
+        this.shieldGlowSprite.render(g, new Vector2i(
+                position.x - (newSize.x - spriteSize.x) / 2,
+                position.y - (newSize.x - spriteSize.y) / 2), newSize);
+
+        this.shieldSprite[currentPlayer].render(g, position);
+
     }
 
     void render(Graphics g) {
         gemsText.shadowOffset = 2;
 
-        drawPlayerScore(g,0, 44, 260);
-        drawPlayerScore(g,1, 868, 260);
+        drawPlayerScore(g, 0, 44);
+        drawPlayerScore(g, 1, 868);
 
         drawPlayerHealth(g, 0, 15);
         drawPlayerHealth(g, 1, 838);
+        drawShield(g);
     }
 }
