@@ -18,7 +18,7 @@ class PlayerScore {
         for (GemType gem : GemType.values()) {
             gemCount.put(gem, 0);
         }
-        health = maxHealth = 50;
+        health = maxHealth = 25;
     }
 
     public void clearGem(GemType gem) {

@@ -28,30 +28,23 @@ public class Grid {
     private Vector2i secondGemSelectedCoord;
     private Vector2i dragStartCoord;
 
-    public class GemMatches {
-        Vector2i position;
-        int count;
-
-        GemMatches(Vector2i position, int count) {
-            this.position = position;
-            this.count = count;
-        }
-    }
 
     public Map<String, Sprite> gemsSprites;
-    public List<GemMatches> matches;
+    public List<GemMatch> matches;
     public GemSwap gemSwaps;
     public static ScoreBoard scoreBoard;
     public static boolean generatingGrid;
     public Label message;
     public Label playerWinsText;
     public Button restartBtn;
-    Map<Gem, GemType> gemsReplace = new HashMap<>();
+    public Map<Gem, GemType> gemsReplace = new HashMap<>();
+    public int curSelector;
 
     Grid(int x, int y) {
         this.numRows = x;
         this.numColumns = y;
         this.table = new Gem[x * y];
+        this.curSelector = 0;
 
         Grid.size = new Vector2i(numRows * (Grid.blockSize + Grid.gap),
                 numColumns * (Grid.blockSize + Grid.gap));
@@ -66,8 +59,8 @@ public class Grid {
 
         try {
             var bitmapSelector = ImageManager.getBitmapDataList("bmp_skin_battlemisc");
-            this.selectorSprite[0] = bitmapSelector.get(0).sprite;
-            this.selectorSprite[1] = bitmapSelector.get(1).sprite;
+            this.selectorSprite[0] = bitmapSelector.get(1).sprite;
+            this.selectorSprite[1] = bitmapSelector.get(0).sprite;
             this.selectorSpriteSize = new Vector2i(selectorSprite[0].size);
 
             var bitmapGems = ImageManager.getBitmapDataList("bmp_skin_gemsgrid");
@@ -228,7 +221,7 @@ public class Grid {
                     // Add to the list of match if 3 or more identical gems were found in a row.
                     if (length >= 3) {
                         for (int k = 0; k < length; k++) {
-                            this.matches.add(new GemMatches(new Vector2i(i, j - k), length));
+                            this.matches.add(new GemMatch(new Vector2i(i, j - k), length));
                         }
                         if (addToScore) {
                             addGemsToScore(i, j, length);
@@ -249,7 +242,7 @@ public class Grid {
                     // Add to the list of match if 3 or more identical gems were found in a row.
                     if (length >= 3) {
                         for (int k = 0; k < length; k++) {
-                            this.matches.add(new GemMatches(new Vector2i(i - k, j), length));
+                            this.matches.add(new GemMatch(new Vector2i(i - k, j), length));
                         }
                         if (addToScore) {
                             addGemsToScore(i, j, length);
@@ -376,6 +369,7 @@ public class Grid {
                 secondGemSelectedCoord.set(-1);
                 animateSelector = false;
                 animTime = 0.0f;
+                curSelector = ScoreBoard.currentPlayer;
             }
         } else {
             selectorAlpha = 1.0f;
@@ -510,13 +504,13 @@ public class Grid {
         }
 
         if (firstGemSelectedCoord.x > -1 && firstGemSelectedCoord.y > -1) {
-            Vector2i coords = this.getBlockPosition(firstGemSelectedCoord, selectorSprite[0].size);
-            selectorSprite[0].angle = (selectorSprite[0].angle + 1) % 360;
-            selectorSprite[0].alpha = selectorAlpha;
-            selectorSprite[0].render(g, coords, selectorSpriteSize);
+            Vector2i coords = this.getBlockPosition(firstGemSelectedCoord, selectorSprite[curSelector].size);
+            selectorSprite[curSelector].angle = (selectorSprite[curSelector].angle + 1) % 360;
+            selectorSprite[curSelector].alpha = selectorAlpha;
+            selectorSprite[curSelector].render(g, coords, selectorSpriteSize);
             if (secondGemSelectedCoord.x > -1 && secondGemSelectedCoord.y > -1) {
-                coords = this.getBlockPosition(secondGemSelectedCoord, selectorSprite[0].size);
-                selectorSprite[0].render(g, coords, selectorSpriteSize);
+                coords = this.getBlockPosition(secondGemSelectedCoord, selectorSprite[curSelector].size);
+                selectorSprite[curSelector].render(g, coords, selectorSpriteSize);
             }
         }
         scoreBoard.render(g);

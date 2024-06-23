@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/GemMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle.bin" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle.db" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/Assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/Assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PlayerScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PlayerScore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

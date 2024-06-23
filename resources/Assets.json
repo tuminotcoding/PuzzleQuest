@@ -51,20 +51,20 @@
 				"_height": "768"
 			},
 			{
-				"_tag": "img_selector_green",
-				"_bitmap": "bmp_skin_battlemisc",
-				"_x": "95",
-				"_y": "75",
-				"_width": "121",
-				"_height": "121"
-			},
-			{
 				"_tag": "img_selector_red",
 				"_bitmap": "bmp_skin_battlemisc",
-				"_x": "215",
-				"_y": "75",
-				"_width": "121",
-				"_height": "121"
+				"_x": "90",
+				"_y": "73",
+				"_width": "130",
+				"_height": "130"
+			},
+			{
+				"_tag": "img_selector_green",
+				"_bitmap": "bmp_skin_battlemisc",
+				"_x": "220",
+				"_y": "73",
+				"_width": "130",
+				"_height": "130"
 			},
 			{
 				"_tag": "img_gems_bar_bk",
