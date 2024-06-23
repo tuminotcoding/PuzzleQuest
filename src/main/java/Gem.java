@@ -56,7 +56,6 @@ public class Gem {
         this.fadeoutAnim = new GemAnimation();
         this.swapAnim = new GemAnimation();
         this.movingDownAnim = new GemAnimation();
-        Random rand = new Random();
         this.randX =  MathUtils.randInt(-10, 10);
         this.randY = MathUtils.randInt(10, 90);
     }
@@ -134,8 +133,11 @@ public class Gem {
                     pos.x += (int) (randX * 0.5);
                 }
                 pos.y += (int) (animTime * 60 / animDuration);
+
+              //  System.out.println( this.fromY);
                 if (pos.y >= toY) {
                     pos.y = toY;
+                    animTime= 1.0f;
                 }
             }
         } else if (isSwapping) {

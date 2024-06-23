@@ -378,16 +378,18 @@ public class Grid {
     }
 
     public void destroyAllGems(){
+        System.out.println("destroyed");
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
-                this.getGem(i, j).pos.x = i * (Grid.blockSize + Grid.gap);
+                //this.getGem(i, j).pos.x = i * (Grid.blockSize + Grid.gap);
                 this.getGem(i, j).pos.y = j * (Grid.blockSize + Grid.gap);
+               // System.out.println(this.getGem(i, j).pos.y);
                 this.getGem(i, j).moveDown(Grid.size.y + Grid.blockSize + Grid.gap, true, 1.5);
             }
         }
     }
 
-    void  fillGemsWith(GemType from, GemType to) {
+    void fillGemsWith(GemType from, GemType to) {
         for (Gem gem : table) {
             if (gem.gemType == from) {
                 gem.fadeOut();
@@ -414,15 +416,15 @@ public class Grid {
     }
 
     public void drawMessage(Graphics g) {
-        if(messageAlpha == 0)
+        if (messageAlpha == 0)
             return;
 
         messageAlpha = Math.clamp(messageAlpha, 0.0f, 1.0f);
         float opacity = Math.min(0.7f, messageAlpha);
-        message.backgroundColor = new Color(0,0,0, opacity);
+        message.backgroundColor = new Color(0, 0, 0, opacity);
         message.backgroundWidth = 10;
         message.color = Color.cyan;
-        message.color = new Color(message.color.getRed(), message.color.getGreen(), message.color.getBlue(), (int )(messageAlpha*255));
+        message.color = new Color(message.color.getRed(), message.color.getGreen(), message.color.getBlue(), (int) (messageAlpha * 255));
         message.outlineWidth = 5;
         message.render(g);
     }
@@ -471,7 +473,6 @@ public class Grid {
         scoreBoard.update(dt);
         restartBtn.update(dt);
 
-
         for (var item : gemsReplace.entrySet()) {
 
             Gem gem = item.getKey();
@@ -492,6 +493,7 @@ public class Grid {
                 this.destroyAllGems();
                 restartBtn.disable = false;
                 enablePlayerWinnerDraw = true;
+                System.out.println("destroyed gems");
             }
         }
     }

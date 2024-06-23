@@ -161,6 +161,7 @@ public class GameMenu {
                     btn.update(dt);
                 }
             }
+            button[2].disable = selectedSave==null;
             menu.update(dt);
         }
     }

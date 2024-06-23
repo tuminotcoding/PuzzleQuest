@@ -99,8 +99,8 @@ public class ScoreBoard {
     }
 
     void update(double dt) {
-        playerScore[0].health = Math.min(playerScore[0].health, playerScore[0].maxHealth);
-        playerScore[1].health = Math.min(playerScore[1].health, playerScore[1].maxHealth);
+        playerScore[0].health = Math.clamp(playerScore[0].health, 0, playerScore[0].maxHealth);
+        playerScore[1].health = Math.clamp(playerScore[1].health, 0, playerScore[1].maxHealth);
 
         this.shieldSprite[0].update(dt);
         this.shieldSprite[1].update(dt);

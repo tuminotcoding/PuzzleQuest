@@ -49,6 +49,7 @@ public class Button extends Component {
     }
 
     public void render(Graphics g) {
+        if(this.disable) return;
         this.label.position = new Vector2i(this.position);
 
         if (this.isPressed) {
