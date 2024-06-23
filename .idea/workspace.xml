@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
-    </list>
+    <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
