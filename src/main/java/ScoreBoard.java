@@ -90,9 +90,9 @@ public class ScoreBoard {
         }
 
         playerScore[currentPlayer].addGem(gemType, length);
-        
+
         //Do not change the turn if the player creates a sequence of 4 gems of the same color.
-        if (length >= 4) {
+        if (length <= 4) {
             currentPlayer = currentPlayer > 0 ? 0 : 1;
         }
 
