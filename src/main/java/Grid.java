@@ -473,10 +473,13 @@ public class Grid {
         scoreBoard.update(dt);
         restartBtn.update(dt);
 
+        boolean animFinished = false;
         for (var item : gemsReplace.entrySet()) {
-
             Gem gem = item.getKey();
-            if (!gem.isFadeOutComplete()) continue;
+            if (!gem.isFadeOutComplete()){
+                animFinished = true;
+                continue;
+            }
             GemType type = item.getValue();
             gem.setType(type);
             gem.alpha = 1.0f;
@@ -484,7 +487,7 @@ public class Grid {
             item.getKey().setSprite(sprite.image);
         }
 
-        if (!this.isGemsFinishedAnim()) {
+        if (!animFinished) {
             gemsReplace.clear();
         }
 

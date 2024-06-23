@@ -95,10 +95,11 @@ public class ScoreBoard {
         if (length <= 4) {
             currentPlayer = currentPlayer > 0 ? 0 : 1;
         }
-
     }
 
     void update(double dt) {
+        playerScore[0].maxHealth = Math.max(playerScore[0].maxHealth, 5);
+        playerScore[1].maxHealth = Math.max(playerScore[1].maxHealth, 5);
         playerScore[0].health = Math.clamp(playerScore[0].health, 0, playerScore[0].maxHealth);
         playerScore[1].health = Math.clamp(playerScore[1].health, 0, playerScore[1].maxHealth);
 
