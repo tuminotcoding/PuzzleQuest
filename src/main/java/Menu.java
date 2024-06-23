@@ -21,10 +21,11 @@ public class Menu extends Component {
     private static final int REMOVE_ITEM = 4;
     private static final int REMOVE_ITEM_OVER = 5;
     public Sprite[] sprites = new Sprite[6];
-    Map<String, String> items;
-    Label label;
-    String selectedItem;
-    boolean isInsideBtn;
+    public Map<String, String> items;
+    public Label label;
+    public String selectedItem;
+    public boolean isInsideBtn;
+
     Menu(Vector2i position) {
         super(position);
 
@@ -44,18 +45,11 @@ public class Menu extends Component {
 
         items = new LinkedHashMap<>();
 
-        IntStream.range(0, 10).forEach(i -> items.put("save" + i, "No save"));
-
         label = new Label(position, "", 21);
     }
 
-    public void addItem(String item) {
-        for (Map.Entry<String, String> entry : items.entrySet()) {
-            if (entry.getValue().equals("No save")) {
-                items.replace(entry.getKey(), item);
-                return;
-            }
-        }
+    public void addItem(String item, String key) {
+        items.put(key, item);
     }
 
     public Object getItemValue(String item) {
@@ -107,7 +101,7 @@ public class Menu extends Component {
     }
 
     public void render(Graphics g) {
-        if (this.disable)
+        if (this.disable || items.isEmpty())
             return;
 
         this.sprites[TOP_MENU].render(g, position);

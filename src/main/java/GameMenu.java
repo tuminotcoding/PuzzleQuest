@@ -69,7 +69,7 @@ public class GameMenu {
                     count = 10;
                 }
                 selectedSave = selectedSave.replaceAll("\\d+", String.valueOf(count));
-                System.out.println(selectedSave);
+                System.out.println("saving:" + selectedSave);
             }
             ScoreBoard.playerScore[0].restart();
             ScoreBoard.playerScore[1].restart();
@@ -92,16 +92,17 @@ public class GameMenu {
             menu.disable = !menu.disable;
             List<String> saves = database.getAllSavesName();
             if (!saves.isEmpty()) {
-                saves.forEach(save -> menu.addItem(save.replaceAll("(\\D)(\\d+)", "$1 $2")));
+                saves.forEach(save -> menu.addItem(save.replaceAll("(\\D)(\\d+)", "$1 $2"), save));
             }
         });
 
         menu.setCallback((item, delete) -> {
             if (delete) {
-                System.out.println("deleted: " + item);
+                System.out.println("deleted sava: " + item);
                 database.deleteGems(item);
             } else {
                 load(item);
+                System.out.println("selected save: " + item);
                 startGame();
             }
         });
@@ -195,7 +196,7 @@ public class GameMenu {
     public static void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             renderGame = !renderGame;
-            System.out.println("saving: " + selectedSave);
+            System.out.println("updating: " + selectedSave);
             save(selectedSave, true);
         }
     }
