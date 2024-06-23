@@ -13,17 +13,13 @@ public class ScoreBoard {
     public List<Sprite> infoBarList;
     public AnimatedSprite shieldGlowSprite;
     public AnimatedSprite[] shieldSprite = new AnimatedSprite[2];
-    private int length;
-    private GemType gemType;
-    private float textAlpha;
 
     ScoreBoard() {
         gemsText = new Label(new Vector2i(106, 260), "", 16);
         playerScore[0] = new PlayerScore();
         playerScore[1] = new PlayerScore();
 
-        currentPlayer = length = 0;
-
+        currentPlayer = 0;
 
         try {
             this.playerHealthBar = ImageManager.getImage("bmp_skin_battlemisc", "img_selglow");
@@ -93,25 +89,18 @@ public class ScoreBoard {
             playerScore[currentPlayer].nextTurn = true;
         }
 
+        playerScore[currentPlayer].addGem(gemType, length);
+        
         //Do not change the turn if the player creates a sequence of 4 gems of the same color.
-        if (length <= 4) {
+        if (length >= 4) {
             currentPlayer = currentPlayer > 0 ? 0 : 1;
         }
 
-        this.length = 0;
-        playerScore[currentPlayer].addGem(gemType, length);
     }
 
     void update(double dt) {
-
         playerScore[0].health = Math.min(playerScore[0].health, playerScore[0].maxHealth);
         playerScore[1].health = Math.min(playerScore[1].health, playerScore[1].maxHealth);
-
-        if (playerScore[0].health <= 0 || playerScore[1].health <= 0) {
-            textAlpha -= (int) (dt);
-            textAlpha = Math.clamp(textAlpha, 0.0f, 1.0f);
-        }
-
 
         this.shieldSprite[0].update(dt);
         this.shieldSprite[1].update(dt);

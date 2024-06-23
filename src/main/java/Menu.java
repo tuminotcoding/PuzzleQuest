@@ -62,7 +62,7 @@ public class Menu extends Component {
     }
 
     public void mouseEvent(MouseHandler handler) {
-        if (this.disable)
+        if (this.disable && items.isEmpty())
             return;
 
         MouseEvent e = handler.event;
@@ -83,11 +83,10 @@ public class Menu extends Component {
             case MOUSE_MOVED:
                 int yPos = position.y + 15;
                 for (var item : items.entrySet()) {
+                    this.isInsideBtn = contains(e.getPoint(), new Vector2i(position.x + size.x - this.sprites[REMOVE_ITEM].size.x - 6, yPos - 3), new Vector2i(28));
 
-                    this.isInsideBtn = contains(e.getPoint(), new Vector2i(position.x + size.x - this.sprites[REMOVE_ITEM].size.x - 6, yPos-3), new Vector2i(28));
-
-                    this.isInside = contains(e.getPoint(), new Vector2i(position.x, yPos), new Vector2i(size.x-6, size.y));
-                    if (isInside && !item.getValue().equals("No save")) {
+                    this.isInside = contains(e.getPoint(), new Vector2i(position.x, yPos), new Vector2i(size.x - 6, size.y));
+                    if (this.isInside) {
                         selectedItem = item.getKey();
                         break;
                     } else {
@@ -116,13 +115,13 @@ public class Menu extends Component {
 
             int yPos = position.y + 15 + i * 26;
 
-            if (this.selectedItem.equals(key) && !value.equals("No save")) {
+            if (this.selectedItem.equals(key)) {
                 this.sprites[SELECTED_MENU].render(g, new Vector2i(position.x, yPos));
             } else {
                 this.sprites[CENTER_MENU].render(g, new Vector2i(position.x, yPos));
             }
 
-            if (this.isInsideBtn && this.selectedItem.equals(key) && !value.equals("No save")) {
+            if (this.isInsideBtn && this.selectedItem.equals(key)) {
                 this.sprites[REMOVE_ITEM_OVER].render(g, new Vector2i(position.x + size.x - this.sprites[REMOVE_ITEM].size.x - 6, yPos + 2));
             } else {
                 this.sprites[REMOVE_ITEM].render(g, new Vector2i(position.x + size.x - this.sprites[REMOVE_ITEM].size.x - 6, yPos - 3));

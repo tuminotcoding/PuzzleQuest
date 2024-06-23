@@ -210,6 +210,7 @@ public class Grid {
         else if (this.getGem(r, c).gemType == GemType.GEM_BLUE) {
             fillGemsWith(GemType.GEM_RED, GemType.GEM_SKULL);
         }
+        System.out.println("added gems: " + length);
         scoreBoard.addGem(this.getGem(r, c).gemType, length);
     }
 
