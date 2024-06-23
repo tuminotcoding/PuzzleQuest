@@ -16,7 +16,7 @@ public class Label extends Component {
     public int outlineWidth;
     public Color outlineColor;
     public Color backgroundColor;
-    public int backGroundWidth;
+    public int backgroundWidth;
 
     Label(Vector2i position, String text, int size) {
         super(position);
@@ -31,7 +31,7 @@ public class Label extends Component {
 
         this.text = text;
         this.position = position;
-        this.shadowOffset = this.outlineWidth = 0;
+        this.shadowOffset = this.backgroundWidth = this.outlineWidth = 0;
         this.color  = this.shadowColor = this.outlineColor=  this.backgroundColor  = new Color(0x000000);
     }
 
@@ -48,10 +48,10 @@ public class Label extends Component {
             int height = metrics.getHeight();
             int ascent = metrics.getAscent();
 
-            if(this.backGroundWidth > 0) {
+            if(this.backgroundWidth > 0) {
                 g.setColor(this.backgroundColor);
-                g.fillRect(this.position.x - backGroundWidth / 2, this.position.y - backGroundWidth / 2 - ascent,
-                        width + backGroundWidth, height + backGroundWidth);
+                g.fillRect(this.position.x - backgroundWidth / 2, this.position.y - backgroundWidth / 2 - ascent,
+                        width + backgroundWidth, height + backgroundWidth);
             }
 
             // Draw the drop shadow

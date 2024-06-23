@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DSBallade.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DSBalladeShadow.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MorrisRoman-Black.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MorrisRomanAlternate-Black.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Backdrop_Battle.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Backdrop_Standard.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Battle_Misc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Buttons_Main.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Buttons_Misc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Gems_Grid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Splash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +69,7 @@
     "Gradle.Puzzle [build].executor": "Run",
     "Gradle.Puzzle.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging master",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/PC/Desktop/Puzzle-master",

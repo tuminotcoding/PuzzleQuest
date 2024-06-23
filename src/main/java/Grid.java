@@ -46,6 +46,7 @@ public class Grid {
     public Label message;
     public Label playerWinsText;
     public Button restartBtn;
+    Map<Gem, GemType> gemsReplace = new HashMap<>();
 
     Grid(int x, int y) {
         this.numRows = x;
@@ -202,63 +203,58 @@ public class Grid {
         return false;
     }
 
+    public void addGemsToScore(int r, int c, int length) {
+        if (this.getGem(r, c).gemType == GemType.GEM_GREEN) {
+            fillGemsWith(GemType.GEM_SKULL, GemType.GEM_RED);
+        }
+        else if (this.getGem(r, c).gemType == GemType.GEM_BLUE) {
+            fillGemsWith(GemType.GEM_RED, GemType.GEM_SKULL);
+        }
+        scoreBoard.addGem(this.getGem(r, c).gemType, length);
+    }
+
     // Scans for and records sequences of three or more identical gems by rows and columns.
     public boolean findMatches(boolean addToScore) {
         this.matches.clear();
 
         //Check horizontal matches
         for (int i = 0; i < numRows; i++) {
-            int found = 1;
+            int length = 1;
             for (int j = 0; j < numColumns; j++) {
                 if (j < numColumns - 1 && this.getGem(i, j).isEqual(this.getGem(i, j + 1))) {
-                    found++;
+                    length++;
                 } else {
                     // Add to the list of match if 3 or more identical gems were found in a row.
-                    if (found >= 3) {
-                        for (int k = 0; k < found; k++) {
-                            this.matches.add(new GemMatches(new Vector2i(i, j - k), found));
+                    if (length >= 3) {
+                        for (int k = 0; k < length; k++) {
+                            this.matches.add(new GemMatches(new Vector2i(i, j - k), length));
                         }
                         if (addToScore) {
-                            if (this.getGem(i, j).gemType == GemType.GEM_GREEN) {
-                                fillGemsWith(GemType.GEM_SKULL, GemType.GEM_RED);
-                            }
-                            else if (this.getGem(i, j).gemType == GemType.GEM_BLUE) {
-                                fillGemsWith(GemType.GEM_RED, GemType.GEM_SKULL);
-                            }
+                            addGemsToScore(i, j, length);
                         }
                     }
-                    found = 1;
+                    length = 1;
                 }
             }
         }
         // Check vertical matches
         for (int j = 0; j < numColumns; j++) {
-            int found = 1;
+            int length = 1;
             for (int i = 0; i < numRows; i++) {
                 if (i < numRows - 1 && this.getGem(i, j).isEqual(this.getGem(i + 1, j))) {
-                    found++;
+                    length++;
                 } else {
                     // Add to the list of match if 3 or more identical gems were found in a row.
-                    if (found >= 3) {
-                        for (int k = 0; k < found; k++) {
-                            this.matches.add(new GemMatches(new Vector2i(i - k, j), found));
+                    if (length >= 3) {
+                        for (int k = 0; k < length; k++) {
+                            this.matches.add(new GemMatches(new Vector2i(i - k, j), length));
                         }
                         if (addToScore) {
-                            if (this.getGem(i, j).gemType == GemType.GEM_GREEN) {
-                                fillGemsWith(GemType.GEM_SKULL, GemType.GEM_RED);
-                            }
-                            else if (this.getGem(i, j).gemType == GemType.GEM_BLUE) {
-                                fillGemsWith(GemType.GEM_RED, GemType.GEM_SKULL);
-                            }
+                            addGemsToScore(i, j, length);
                         }
                     }
-                    found = 1;
+                    length = 1;
                 }
-            }
-        }
-        if (addToScore) {
-            for (var match : matches) {
-                scoreBoard.addGem(this.getGem(match.position).gemType);
             }
         }
         return !this.matches.isEmpty();
@@ -395,7 +391,6 @@ public class Grid {
         }
     }
 
-    Map<Gem, GemType> gemsReplace = new HashMap<>();
     void  fillGemsWith(GemType from, GemType to) {
         for (Gem gem : table) {
             if (gem.gemType == from) {

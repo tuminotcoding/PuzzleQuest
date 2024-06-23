@@ -55,12 +55,7 @@ public class ScoreBoard {
         }
     }
 
-    void addGem(GemType gemType){
-        length++;
-        this.gemType = gemType;
-    }
-
-    void processGems(GemType gemType, int length) {
+    void addGem(GemType gemType, int length) {
         if (gemType == null || length == 0) {
             return;
         }
@@ -108,7 +103,6 @@ public class ScoreBoard {
     }
 
     void update(double dt) {
-        processGems(gemType, length);
 
         playerScore[0].health = Math.min(playerScore[0].health, playerScore[0].maxHealth);
         playerScore[1].health = Math.min(playerScore[1].health, playerScore[1].maxHealth);
