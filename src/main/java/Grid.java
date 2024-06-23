@@ -237,7 +237,7 @@ public class Grid {
                 }
             }
         }
-        
+
         // Check vertical matches
         for (int j = 0; j < numColumns; j++) {
             int length = 1;
@@ -411,7 +411,7 @@ public class Grid {
         playerWinsText.text = ScoreBoard.playerScore[0].health > 0 ? "Player 1 wins" : "Player 2 wins";
         playerWinsText.color = Color.CYAN;
         playerWinsText.position = new Vector2i(355, 400);
-        playerWinsText.backGroundWidth = 20;
+        playerWinsText.backgroundWidth = 20;
         playerWinsText.backgroundColor = new Color(0, 0, 0, 0.8f);
         playerWinsText.outlineWidth = 2;
         playerWinsText.render(g);
