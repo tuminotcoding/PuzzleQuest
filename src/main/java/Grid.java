@@ -425,7 +425,7 @@ public class Grid {
         messageAlpha = Math.clamp(messageAlpha, 0.0f, 1.0f);
         float opacity = Math.min(0.7f, messageAlpha);
         message.backgroundColor = new Color(0,0,0, opacity);
-        message.backGroundWidth = 10;
+        message.backgroundWidth = 10;
         message.color = Color.cyan;
         message.color = new Color(message.color.getRed(), message.color.getGreen(), message.color.getBlue(), (int )(messageAlpha*255));
         message.outlineWidth = 5;

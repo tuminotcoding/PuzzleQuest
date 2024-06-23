@@ -32,7 +32,8 @@ public class Label extends Component {
         this.text = text;
         this.position = position;
         this.shadowOffset = this.backgroundWidth = this.outlineWidth = 0;
-        this.color  = this.shadowColor = this.outlineColor=  this.backgroundColor  = new Color(0x000000);
+        this.color  = new Color(0xFFFFFF);
+        this.shadowColor = this.outlineColor=  this.backgroundColor  = new Color(0x000000);
     }
 
     public void setFont(Font font) {
