@@ -68,7 +68,7 @@ public class Sprite {
         g2d.drawRenderedImage(this.image, AffineTransform.getTranslateInstance(-origWidth / 2.0, -origHeight / 2.0));
         g2d.dispose();
 
-        // Centralizar a imagem rotacionada
+        // Center the rotated image
         int newX = x - (w - origWidth) / 2;
         int newY = y - (h - origHeight) / 2;
         g.drawImage(rotated, newX, newY, w, h, null);

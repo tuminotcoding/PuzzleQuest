@@ -4,32 +4,32 @@
 			{
 				"_tag": "bmp_skin_backdrop",
 				"_precache": "1",
-				"__text": "src\\main\\resources\\Skin_Backdrop_Standard.jpg"
+				"__text": "resources\\Skin_Backdrop_Standard.jpg"
 			},
 			{
 				"_tag": "bmp_skin_backdrop_battle",
 				"_precache": "1",
-				"__text": "src\\main\\resources\\Skin_Backdrop_Battle.jpg"
+				"__text": "resources\\Skin_Backdrop_Battle.jpg"
 			},
 			{
 				"_tag": "bmp_skin_battlemisc",
 				"_precache": "1",
-				"__text": "src\\main\\resources\\Skin_Battle_Misc.png"
+				"__text": "resources\\Skin_Battle_Misc.png"
 			},
 			{
 				"_tag": "bmp_skin_gemsgrid",
 				"_precache": "1",
-				"__text": "src\\main\\resources\\Skin_Gems_Grid.png"
+				"__text": "resources\\Skin_Gems_Grid.png"
 			},
 			{
 				"_tag": "bmp_skin_buttmain",
 				"_precache": "1",
-				"__text": "src\\main\\resources\\Skin_Buttons_Main.png"
+				"__text": "resources\\Skin_Buttons_Main.png"
 			},
 			{
 				"_tag": "bmp_skin_buttmisc",
 				"_precache": "1",
-				"__text": "src\\main\\resources\\Skin_Buttons_Misc.png"
+				"__text": "resources\\Skin_Buttons_Misc.png"
 			}
 		],
 		

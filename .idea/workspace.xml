@@ -5,45 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/puzzle.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/puzzle.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DSBallade.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DSBalladeShadow.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/MorrisRoman-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/MorrisRomanAlternate-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Backdrop_Battle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Backdrop_Standard.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Battle_Misc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Buttons_Main.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Buttons_Misc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Gems_Grid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/Skin_Splash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SaveData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Skin_Backdrop_Battle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Skin_Buttons_Misc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AnimatedSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AnimatedSprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Label.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MathUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MathUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PlayerScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PlayerScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ds-ballade.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/selector.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/selector_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/selector_red.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DSBallade.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DSBalladeShadow.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MorrisRoman-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MorrisRomanAlternate-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Backdrop_Battle.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Backdrop_Standard.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Battle_Misc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Buttons_Main.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Buttons_Misc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Gems_Grid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Skin_Splash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/background.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,29 +71,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Game.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Puzzle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Puzzle [:Game.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Puzzle [:GemsManager.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Puzzle [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Puzzle [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Puzzle.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/Desktop/Puzzle-master&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/PC/Puzzle/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.40229884&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Game.executor": "Run",
+    "Gradle.Build Puzzle.executor": "Run",
+    "Gradle.Puzzle [:Game.main()].executor": "Run",
+    "Gradle.Puzzle [:GemsManager.main()].executor": "Run",
+    "Gradle.Puzzle [:Main.main()].executor": "Run",
+    "Gradle.Puzzle [build].executor": "Run",
+    "Gradle.Puzzle.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/PC/Desktop/Puzzle-master",
+    "onboarding.tips.debug.path": "C:/Users/PC/Puzzle/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.40229884",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />

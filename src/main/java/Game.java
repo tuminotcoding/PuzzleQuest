@@ -13,16 +13,9 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
 
     public Game() {
         new GameMenu();
-        save();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         this.addKeyListener(this);
-    }
-
-    public void save (){
-    }
-
-    public void load () {
     }
 
     public void run() {
