@@ -2,16 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
+import java.util.concurrent.TimeUnit;
 
 public class Game extends Canvas implements Runnable, KeyListener {
-    private BufferStrategy bs;
-    private Thread thread;
+    private static BufferStrategy bs;
+    private static Thread thread;
     private static final long TIME_FRAME = 1000 / 60;
     private static JFrame frame = null;
-    private long lastFrameTime;
+    private static long lastFrameTime;
     private static boolean isRunning = true;
 
-    public Game() {
+    Game() {
         new GameMenu();
         MouseEvents mouseEvents = new MouseEvents();
         this.addMouseListener(mouseEvents);
@@ -32,24 +33,21 @@ public class Game extends Canvas implements Runnable, KeyListener {
                 do {
                     long elapsedTime = currentTime - lastFrameTime;
 
-                    Graphics g = null;
-                    try {
-                        g = bs.getDrawGraphics();
-                        render(g);
-                    } finally {
-                        g.dispose();
-                    }
+                    Graphics g = bs.getDrawGraphics();
+                    render(g);
+                    g.dispose();
 
                     while (elapsedTime < TIME_FRAME) {
                         try {
-                            Thread.sleep(TIME_FRAME - elapsedTime);
+                            TimeUnit.MILLISECONDS.sleep(TIME_FRAME - elapsedTime);
                         } catch (InterruptedException e) {
+                            throw new RuntimeException("Uncaught", e);
                         }
-
+                 
                         currentTime = System.currentTimeMillis();
                         elapsedTime = currentTime - lastFrameTime;
 
-                        double elapsed = elapsedTime/1000.0f;
+                        double elapsed = elapsedTime / 1000.0f;
                         update(elapsed);
                         lastFrameTime = System.currentTimeMillis();
                     }
