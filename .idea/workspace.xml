@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aae1f435-195d-4bd9-a636-ecec7730b7d1" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/BitmapData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle.bin" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle.db" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ImageManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScoreBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +48,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>

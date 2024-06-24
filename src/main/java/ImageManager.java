@@ -7,20 +7,8 @@ import java.util.*;
 import org.json.JSONArray;
 import java.io.File;
 import java.nio.file.Files;
-import java.util.stream.Collectors;
 
 public class ImageManager {
-
-    public static class BitmapData {
-        public String name;
-        public Sprite sprite;
-
-        BitmapData(String name, Sprite image) {
-            this.name = name;
-            this.sprite = image;
-        }
-    }
-
     private static final Map<String, List<BitmapData>> imageCache = new HashMap<>();
 
     public static void parseJsonFromFile(String file) throws IOException {

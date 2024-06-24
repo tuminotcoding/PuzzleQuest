@@ -97,6 +97,10 @@ public class ScoreBoard {
         }
     }
 
+    boolean anyPlayerWinner () {
+        return playerScore[0].health == 0 || playerScore[1].health == 0;
+    }
+
     void update(double dt) {
         playerScore[0].maxHealth = Math.max(playerScore[0].maxHealth, 5);
         playerScore[1].maxHealth = Math.max(playerScore[1].maxHealth, 5);
@@ -127,7 +131,7 @@ public class ScoreBoard {
             score = playerScore[playerID].getGemCount(GemType.values()[i]);
             int width = infoBarList.get(i).size.x;
             int height = infoBarList.get(i).size.y;
-            int progress = score * height / 50;
+            int progress = score * height / 100;
             infoBarList.get(i).render(g, new Vector2i(posX + 59, 168 + height - progress), new Vector2i(width, progress));
             posX += 21;
         }
@@ -162,6 +166,10 @@ public class ScoreBoard {
     }
 
     void drawShield(Graphics g) {
+        if (this.anyPlayerWinner()) {
+            return;
+        }
+
         Vector2i position = currentPlayer == 0 ?
                 new Vector2i(84, 70) :
                 new Vector2i(900, 70);
@@ -173,7 +181,6 @@ public class ScoreBoard {
                 position.y - (newSize.x - spriteSize.y) / 2), newSize);
 
         this.shieldSprite[currentPlayer].render(g, position);
-
     }
 
     void render(Graphics g) {

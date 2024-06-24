@@ -1,7 +1,6 @@
 import org.joml.Vector2i;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 enum GemType {
     GEM_GREEN(0),
