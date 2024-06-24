@@ -1,24 +1,22 @@
 import org.joml.Vector2i;
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class GameMenu {
     private static Grid grid;
     private static Sprite backgroundSprite;
-    public static Sprite splashSprite;
+    private static Sprite splashSprite;
 
-    public static Label label;
-    public static Button[] button = new Button[3];
-    public static Menu menu;
-    public static Database database;
-    public static boolean renderGame;
-    public static String selectedSave;
+    private static Label label;
+    private static Button[] button = new Button[3];
+    private static Menu menu;
+    private static Database database;
+    private static boolean renderGame;
+    private static String selectedSave;
 
     GameMenu() {
 
@@ -47,7 +45,7 @@ public class GameMenu {
         database = new Database();
         database.create();
 
-        if(selectedSave != null) {
+        if (selectedSave != null) {
             button[0] = new Button(new Vector2i(700, yPos += 60), "Continue");
             button[0].setCallback(() -> {
                 load(selectedSave);
@@ -85,7 +83,7 @@ public class GameMenu {
             }
         });
 
-        menu = new Menu(new Vector2i(700, yPos+60));
+        menu = new Menu(new Vector2i(700, yPos + 60));
         menu.disable = true;
 
         button[2].setCallback(() -> {
@@ -108,13 +106,13 @@ public class GameMenu {
         });
     }
 
-    public void startGame() {
+    private void startGame() {
         grid.generateGrid();
         renderGame = true;
         menu.disable = true;
     }
 
-    public static void save(String saveName, boolean update) {
+    private static void save(String saveName, boolean update) {
         Map<GemType, Integer> encodedValues = new HashMap<>();
         for (int i = 0; i < GemType.values().length; i++) {
             int gem1 = ScoreBoard.playerScore[0].gemCount.get(GemType.values()[i]);
@@ -135,7 +133,7 @@ public class GameMenu {
         }
     }
 
-    public void load(String saveName) {
+    private void load(String saveName) {
         SaveData saveData = database.getGems(saveName);
 
         for (GemType gemType : saveData.encodedGems.keySet()) {
@@ -161,7 +159,7 @@ public class GameMenu {
                     btn.update(dt);
                 }
             }
-            button[2].disable = selectedSave==null;
+            button[2].disable = selectedSave == null;
             menu.update(dt);
         }
     }

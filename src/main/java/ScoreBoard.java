@@ -51,7 +51,7 @@ public class ScoreBoard {
         }
     }
 
-    void addGem(GemType gemType, int length) {
+    public void addGem(GemType gemType, int length) {
         if (gemType == null || length == 0) {
             return;
         }
@@ -97,11 +97,11 @@ public class ScoreBoard {
         }
     }
 
-    boolean anyPlayerWinner () {
+    public boolean anyPlayerWinner () {
         return playerScore[0].health == 0 || playerScore[1].health == 0;
     }
 
-    void update(double dt) {
+    public void update(double dt) {
         playerScore[0].maxHealth = Math.max(playerScore[0].maxHealth, 5);
         playerScore[1].maxHealth = Math.max(playerScore[1].maxHealth, 5);
         playerScore[0].health = Math.clamp(playerScore[0].health, 0, playerScore[0].maxHealth);
@@ -112,14 +112,14 @@ public class ScoreBoard {
         this.shieldGlowSprite.update(dt);
     }
 
-    void drawScore(Graphics g, Vector2i position, Color color, int score) {
+    private void drawScore(Graphics g, Vector2i position, Color color, int score) {
         gemsText.text = String.valueOf(score);
         gemsText.color = color;
         gemsText.position = position;
         gemsText.render(g);
     }
 
-    void drawPlayerScore(Graphics g, int playerID, int posX) {
+    private void drawPlayerScore(Graphics g, int playerID, int posX) {
         int score = playerScore[playerID].getGemCount(GemType.GEM_GOLD);
         drawScore(g, new Vector2i(posX, 288), Color.YELLOW, score);
         score = playerScore[playerID].getGemCount(GemType.GEM_EXP);
@@ -143,7 +143,7 @@ public class ScoreBoard {
         }
     }
 
-    void drawPlayerHealth(Graphics g, int playerID, int posX) {
+    private void drawPlayerHealth(Graphics g, int playerID, int posX) {
         int health = playerScore[playerID].health;
         int maxHealth = playerScore[playerID].maxHealth;
         int progress = health * this.playerHealthBar.size.x / maxHealth;
@@ -165,7 +165,7 @@ public class ScoreBoard {
         this.gemsText.render(g);
     }
 
-    void drawShield(Graphics g) {
+    private void drawShield(Graphics g) {
         if (this.anyPlayerWinner()) {
             return;
         }

@@ -27,22 +27,21 @@ public class Grid {
     private Vector2i secondGemSelectedCoord;
     private Vector2i dragStartCoord;
 
-
-    public Map<String, Sprite> gemsSprites;
-    public List<GemMatch> matches;
-    public GemSwap gemSwaps;
-    public static ScoreBoard scoreBoard;
-    public static boolean generatingGrid;
-    public Label message;
-    public Label playerWinsText;
-    public Button restartBtn;
-    public Map<Gem, GemType> gemsReplace = new HashMap<>();
-    public int curSelector;
+    private Map<String, Sprite> gemsSprites;
+    private List<GemMatch> matches;
+    private GemSwap gemSwaps;
+    private static ScoreBoard scoreBoard;
+    private static boolean generatingGrid;
+    private Label message;
+    private Label playerWinsText;
+    private Button restartBtn;
+    private Map<Gem, GemType> gemsReplace = new HashMap<>();
+    private int curSelector;
 
     Grid(int x, int y) {
         this.numRows = x;
         this.numColumns = y;
-        this.table = new ArrayList<>(x*y);
+        this.table = new ArrayList<>(x * y);
         this.curSelector = 0;
 
         Grid.size = new Vector2i(numRows * (Grid.blockSize + Grid.gap),
@@ -76,20 +75,16 @@ public class Grid {
             e.printStackTrace();
         }
 
-        message = new Label( new Vector2i(365, 450), "No moves available", 40);
+        message = new Label(new Vector2i(365, 450), "No moves available", 40);
         playerWinsText = new Label(new Vector2i(106, 260), "", 62);
-        restartBtn = new Button(new Vector2i(422, 420),"Restart game");
+        restartBtn = new Button(new Vector2i(422, 420), "Restart game");
         restartBtn.size.x = 180;
         restartBtn.disable = true;
 
-        restartBtn.setCallback(new Component.ComponentCallback() {
-            @Override
-            public void onItemClicked() {
-                generateGrid();
-                enablePlayerWinnerDraw = false;
-                ScoreBoard.playerScore[0].restart();
-                ScoreBoard.playerScore[1].restart();
-            }
+        restartBtn.setCallback(() -> {
+            generateGrid();
+            enablePlayerWinnerDraw = false;
+            ScoreBoard.playerScore[0].restart();
         });
         scoreBoard = new ScoreBoard();
     }
@@ -118,7 +113,7 @@ public class Grid {
                 gem.setSprite(sprite.image);
                 gem.setCoord(i, j);
                 gem.pos.x = i * (Grid.blockSize + Grid.gap);
-                gem.pos.y = j * (Grid.blockSize + Grid.gap+gem.randY/2)  - Grid.size.y;
+                gem.pos.y = j * (Grid.blockSize + Grid.gap + gem.randY / 2) - Grid.size.y;
                 gem.moveDown(j * (Grid.blockSize + Grid.gap), false, 1.0);
                 this.setGem(i, j, gem);
             }
@@ -131,21 +126,20 @@ public class Grid {
     }
 
     // Checks if two blocks are adjacent to each other on the grid.
-    public boolean isAdjacent(Vector2i coordA, Vector2i coordB) {
+    private boolean isAdjacent(Vector2i coordA, Vector2i coordB) {
         int dX = Math.abs(coordA.x - coordB.x);
         int dY = Math.abs(coordA.y - coordB.y);
         return (dX + dY == 1);
     }
 
     // Calculates a grid block position from pixel coordinates and gem size
-    public Vector2i getBlockPosition(Vector2i coords, Vector2i size) {
+    private Vector2i getBlockPosition(Vector2i coords, Vector2i size) {
         int x = (Grid.offset.x - size.x / 2 + Grid.blockSize / 2) + coords.x * (Grid.blockSize + Grid.gap);
         int y = (Grid.offset.y - size.y / 2 + Grid.blockSize / 2) + coords.y * (Grid.blockSize + Grid.gap);
         return new Vector2i(x, y);
     }
-    boolean findMoves;
 
-    public boolean trySwap(Vector2i coordA, Vector2i coordB) {
+    private boolean trySwap(Vector2i coordA, Vector2i coordB) {
         swap(coordA, coordB);
 
         if (this.findMatches(true)) {
@@ -156,14 +150,14 @@ public class Grid {
         return false;
     }
 
-    public boolean canSwap(Vector2i coordA, Vector2i coordB, boolean addToScore) {
+    private boolean canSwap(Vector2i coordA, Vector2i coordB, boolean addToScore) {
         swap(coordA, coordB);
         boolean match = this.findMatches(false);
         swap(coordA, coordB);
         return match;
     }
 
-    public void swap(Vector2i coordA, Vector2i coordB) {
+    private void swap(Vector2i coordA, Vector2i coordB) {
         Gem gemA = this.getGem(coordA);
         Gem gemB = this.getGem(coordB);
 
@@ -175,11 +169,11 @@ public class Grid {
         gemB.setSprite(sprite);
     }
 
-    public boolean findAvailableMoves() {
+    private boolean findAvailableMoves() {
         for (int x = 0; x < numRows - 1; x++) {
             for (int y = 0; y < numColumns; y++) {
                 if (this.canSwap(new Vector2i(x, y), new Vector2i(x + 1, y), false)) {
-                   return true;
+                    return true;
                 }
             }
         }
@@ -195,11 +189,10 @@ public class Grid {
         return false;
     }
 
-    public void addGemsToScore(int r, int c, int length) {
+    private void addGemsToScore(int r, int c, int length) {
         if (this.getGem(r, c).gemType == GemType.GEM_GREEN) {
             fillGemsWith(GemType.GEM_SKULL, GemType.GEM_RED);
-        }
-        else if (this.getGem(r, c).gemType == GemType.GEM_BLUE) {
+        } else if (this.getGem(r, c).gemType == GemType.GEM_BLUE) {
             fillGemsWith(GemType.GEM_RED, GemType.GEM_SKULL);
         }
         System.out.println("added gems: " + length);
@@ -207,7 +200,7 @@ public class Grid {
     }
 
     // Scans for and records sequences of three or more identical gems by rows and columns.
-    public boolean findMatches(boolean addToScore) {
+    private boolean findMatches(boolean addToScore) {
         this.matches.clear();
 
         //Check horizontal matches
@@ -255,7 +248,7 @@ public class Grid {
     }
 
     // Remove all matching gems.
-    public void removeMatchingGems() {
+    private void removeMatchingGems() {
         for (var match : matches) {
             this.getGem(match.position).setType(null);
             this.getGem(match.position).fadeOut();
@@ -263,7 +256,7 @@ public class Grid {
     }
 
     // Gets a list of dropping gems.
-    public List<GemDrop> getDroppingGems() {
+    private List<GemDrop> getDroppingGems() {
         List<GemDrop> dropList = new ArrayList<>();
         for (int x = 0; x < numRows; x++) {
             int drop = 0;
@@ -284,14 +277,14 @@ public class Grid {
         return dropList;
     }
 
-    public boolean isGemsFinishedAnim() {
+    private boolean isGemsFinishedAnim() {
         return table.stream().anyMatch(gem ->
                 !gem.hasMovedDown() || !gem.isFadeOutComplete() || !gem.hasSwapped()
         );
     }
 
     // Drop and insert new gems.
-    public void dropGems(double dt) {
+    private void dropGems(double dt) {
         if (this.isGemsFinishedAnim()) {
             return;
         }
@@ -322,7 +315,7 @@ public class Grid {
     }
 
     // Processes and executes gems swap actions if matches.
-    public void processGemsSwaps() {
+    private void processGemsSwaps() {
         if (gemSwaps != null) {
             Gem gemA = gemSwaps.gemA;
             Gem gemB = gemSwaps.gemB;
@@ -354,7 +347,7 @@ public class Grid {
         }
     }
 
-    public void processSelector(double dt) {
+    private void processSelector(double dt) {
         if (animateSelector) {
             animTime += dt;
             int scale = (int) (animTime * 4);
@@ -373,7 +366,7 @@ public class Grid {
         }
     }
 
-    public void destroyAllGems(){
+    private void destroyAllGems() {
         System.out.println("destroyed");
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
@@ -384,7 +377,7 @@ public class Grid {
         }
     }
 
-    void fillGemsWith(GemType from, GemType to) {
+    private void fillGemsWith(GemType from, GemType to) {
         table.forEach(gem -> {
             if (gem.gemType == from) {
                 gem.fadeOut();
@@ -393,9 +386,10 @@ public class Grid {
         });
     }
 
-    boolean enablePlayerWinnerDraw = false;
-    void drawPlayerWinner(Graphics g) {
-        if(!enablePlayerWinnerDraw)
+    private boolean enablePlayerWinnerDraw = false;
+
+    private void drawPlayerWinner(Graphics g) {
+        if (!enablePlayerWinnerDraw)
             return;
 
         g.setColor(new Color(0, 0, 0, 0.4f));
@@ -410,7 +404,7 @@ public class Grid {
         restartBtn.render(g);
     }
 
-    public void drawMessage(Graphics g) {
+    private void drawMessage(Graphics g) {
         if (messageAlpha == 0)
             return;
 
@@ -424,8 +418,9 @@ public class Grid {
         message.render(g);
     }
 
-    boolean hasGemsDestroyed;
-    public void availableGems(double dt){
+    private boolean hasGemsDestroyed;
+
+    private void availableGems(double dt) {
         if (!this.isGemsFinishedAnim()) {
             boolean availableMoves = this.findAvailableMoves();
             if (!availableMoves && !hasGemsDestroyed) {
@@ -436,12 +431,12 @@ public class Grid {
                 generatingGrid = true;
                 System.out.println("there no gems available.");
             }
-            if(generatingGrid) {
+            if (generatingGrid) {
                 messageAlpha -= (int) (dt);
                 System.out.println(messageAlpha);
             }
 
-            if(hasGemsDestroyed && messageAlpha <= 0.5f) {
+            if (hasGemsDestroyed && messageAlpha <= 0.5f) {
                 this.generateGrid();
                 hasGemsDestroyed = false;
             }
@@ -467,7 +462,7 @@ public class Grid {
         boolean animFinished = false;
         for (var item : gemsReplace.entrySet()) {
             Gem gem = item.getKey();
-            if (!gem.isFadeOutComplete()){
+            if (!gem.isFadeOutComplete()) {
                 animFinished = true;
                 continue;
             }
@@ -482,7 +477,7 @@ public class Grid {
             gemsReplace.clear();
         }
 
-        if (ScoreBoard.playerScore[0].health <= 0 || ScoreBoard.playerScore[1].health <= 0) {
+        if (scoreBoard.anyPlayerWinner()) {
             if (!enablePlayerWinnerDraw) {
                 this.destroyAllGems();
                 restartBtn.disable = false;
@@ -510,7 +505,7 @@ public class Grid {
         drawPlayerWinner(g);
     }
 
-    public Vector2i getCoordFromMousePos(MouseEvent e) {
+    private Vector2i getCoordFromMousePos(MouseEvent e) {
         int x = (e.getX() - Grid.offset.x) / (Grid.blockSize + Grid.gap);
         int y = (e.getY() - Grid.offset.y) / (Grid.blockSize + Grid.gap);
 
@@ -519,7 +514,7 @@ public class Grid {
         return new Vector2i(x, y);
     }
 
-    public boolean isMouseHover(MouseEvent e) {
+    private boolean isMouseHover(MouseEvent e) {
         return (e.getX() >= Grid.offset.x && e.getX() < Grid.offset.x + numRows * (Grid.blockSize + Grid.gap)) &&
                 (e.getY() >= Grid.offset.y && e.getY() < Grid.offset.y + numColumns * (Grid.blockSize + Grid.gap));
     }
@@ -550,7 +545,7 @@ public class Grid {
                             this.getGem(firstGemSelectedCoord).move(this.getGem(gridCoords));
                             this.getGem(gridCoords).move(this.getGem(firstGemSelectedCoord));
                             gemSwaps = new GemSwap(this.getGem(firstGemSelectedCoord), this.getGem(gridCoords));
-                            if(!match) {
+                            if (!match) {
                                 firstGemSelectedCoord.set(-1);
                                 secondGemSelectedCoord.set(-1);
                                 return;

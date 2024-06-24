@@ -1,6 +1,8 @@
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MouseHandler {
+public class MouseHandler extends MouseAdapter {
+
     public enum Type {
         MOUSE_PRESSED,
         MOUSE_RELEASED,
@@ -11,7 +13,7 @@ public class MouseHandler {
     public MouseEvent event;
     public Type type;
 
-    public MouseHandler(MouseEvent e, MouseHandler.Type type) {
+     MouseHandler(MouseEvent e, MouseHandler.Type type) {
         this.event = e;
         this.type = type;
     }

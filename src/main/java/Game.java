@@ -3,23 +3,23 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable, MouseListener, MouseMotionListener, KeyListener {
+public class Game extends Canvas implements Runnable, KeyListener {
     private BufferStrategy bs;
     private Thread thread;
     private static final long TIME_FRAME = 1000 / 60;
     private static JFrame frame = null;
-    private long lastFrameTime = System.currentTimeMillis();
-    static boolean isRunning = true;
+    private long lastFrameTime;
+    private static boolean isRunning = true;
 
     public Game() {
         new GameMenu();
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
+        MouseEvents mouseEvents = new MouseEvents();
+        this.addMouseListener(mouseEvents);
+        this.addMouseMotionListener(mouseEvents);
         this.addKeyListener(this);
     }
 
     public void run() {
-
         createBufferStrategy(3);
         bs = getBufferStrategy();
 
@@ -68,42 +68,14 @@ public class Game extends Canvas implements Runnable, MouseListener, MouseMotion
         GameMenu.render(g);
     }
 
-    public void mousePressed(MouseEvent e) {
-        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_PRESSED));
-    }
-
-    public void mouseReleased(MouseEvent e) {
-        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_RELEASED));
-    }
-
-    public void mouseMoved(MouseEvent e) {
-        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_MOVED));
-    }
-
-    public void mouseDragged(MouseEvent e) {
-        GameMenu.mouseEvent(new MouseHandler(e, MouseHandler.Type.MOUSE_DRAGGED));
-    }
-
-    public void mouseClicked(MouseEvent e) {}
-
-    public void mouseEntered(MouseEvent e) {}
-
-    public void mouseExited(MouseEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyPressed(KeyEvent e) {GameMenu.keyPressed(e);}
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        GameMenu.keyPressed(e);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public void keyReleased(KeyEvent e) {}
 
     public synchronized void start() {
         thread = new Thread(this, "Display");
